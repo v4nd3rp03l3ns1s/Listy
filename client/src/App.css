@@ -1,0 +1,216 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.Site{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  background: rgb(234,244,244);
+  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%);
+}
+
+
+.main{
+  /* display: flex;
+  margin: 0;
+  min-height: 100vh;
+  width: 100%; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* /* background: rgb(94,94,94); */
+  /* background: linear-gradient(270deg, rgba(94,94,94,1) 0%, rgba(38,38,38,1) 100%); */ 
+  /* background: rgb(234,244,244);
+  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
+  /* background-color: blue; */
+  flex: 1;
+
+}
+
+
+
+.login-page{
+  display: flex;
+  position: fixed;
+  /* box-sizing: border-box; */
+  /* flex-direction: column; */
+  background: white;
+  border-radius: 5px;
+  justify-content: center;
+  align-items:center;
+  height: 60vh;
+  width: 80vw;
+  box-shadow:
+  0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+  0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+  0 12.5px 10px rgba(0, 0, 0, 0.06),
+  0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+  0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  0 100px 80px rgba(0, 0, 0, 0.12);
+  /* flex-wrap: wrap; */
+  left: 10%;
+  bottom: 20%;
+}
+
+.login-button{
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #6b9080;
+  border-radius: 10px;
+  color: white;
+  width: 60%;
+  height: 6vh;
+  bottom: 40%;
+  /* margin: 3px; */
+  /* margin-top: 30px; */
+}
+
+.signup-button{
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #31433b;
+  border-radius: 10px;
+  color: white;
+  width: 60%;
+  height: 6vh;
+  bottom: 30%;
+  /* margin: 3px; */
+  /* margin-top: 30px; */
+}
+
+.black-listy-logo{
+  display: flex;
+  position: fixed;
+  bottom: 50%;
+  height: 10vh;
+  /* width: 80%; */
+}
+
+.black-listy-nav-logo{
+  display: flex;
+  position: fixed;
+  bottom: 90%;
+  height: 10vh;
+}
+
+.main-content{
+  display: flex;
+  position: relative;
+  height: 80%;
+  background: pink;
+}
+
+.nav-top{
+  height: 10%;
+}
+
+.nav-bottom{
+  display: flex;
+  position: absolute;
+  height: 10vh;
+  background-color: blue;
+
+}
+
+.profile-page-div{
+  display: flex;
+  position: fixed;
+  background-color: red;
+  justify-content: center;
+  align-items:flex-start;
+  min-height: 80%;
+  width: 100vw;
+  bottom: 10%;
+  
+  /* min-width: 100vh; */
+  /* flex-wrap: wrap; */
+}
+
+.profile-info{
+  display: flex;
+  position: relative;
+  /* justify-content: center; */
+  /* align-items: center; */
+}
+
+.nav{
+  display: flex;
+  position: relative;
+  align-items: flex-end;
+  /* background-color: red; */
+}
+
+.profile-logo{
+  display: flex;
+  position: fixed;
+  bottom: 2%;
+  left: 45%;
+  height: 7vh;
+  width: 7vh;
+}
+
+.feed-logo{
+  display: flex;
+  position: fixed;
+  bottom: 2%;
+  left: 6%;
+  height: 7vh;
+  width: 7vh;
+}
+
+.add-logo{
+  display: flex;
+  position: fixed;
+  /* bottom: 2%; */
+  right: 2%;
+  height: 5vh;
+  width: 5vh;
+  top: 18%;
+}
+
+.search-logo{
+  display: flex;
+  position: fixed;
+  bottom: 2%;
+  right: 6%;
+  height: 7vh;
+  width: 7vh;
+}
+
+.logo-navbar-div{
+  /* display: flex; */
+  /* align-items: flex-start; */
+  height: 10vh;
+  position: sticky;
+  left: 5%;
+}
+
+.profile-nav-bar{
+  display: flex;
+  height: 10vh;
+  min-width: 100vw;
+  /* background: blue; */
+  margin-bottom: 10px;
+}
+
+.friends-button{
+  border: 0;
+  border-radius: 10px;
+}
+
+.friends-icon{
+  display: flex;
+  position: fixed;
+  bottom: 84%;
+  right: 2%;
+  height: 5vh;
+  width: 5vh;
+}

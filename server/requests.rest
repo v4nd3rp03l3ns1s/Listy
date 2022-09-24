@@ -1,0 +1,15 @@
+GET http://localhost:3030/profile
+
+###
+
+POST http://localhost:3030/profile
+Content-Type: application/json
+
+{
+    "name": "test",
+    "rating": "3/5",
+    "genre": "Comedy"
+}
+
+###
+DELETE http://localhost:3030/post/delete/632ee8a39add01e59c4a8635
