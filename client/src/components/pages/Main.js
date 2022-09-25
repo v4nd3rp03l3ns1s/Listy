@@ -17,7 +17,7 @@ const { isLoading, error, isAuthenticated } = useAuth0();
 
   return (
       <BrowserRouter>
-    <main className='main'>
+    
 
       {/* <nav className='nav-top'><img className='black-listy-nav-logo' src={blackListyLogo} /></nav> */}
       <nav className='nav-top'><LogoNavbar /></nav>
@@ -32,7 +32,10 @@ const { isLoading, error, isAuthenticated } = useAuth0();
           {/* <Route path='/' element={</>} /> */}
           <Route path='/' element={<LoginPage />} />
           {/* <Route path='/feed' element={<MainFeed />} /> */}
+
+
           <Route path='/profile' element={<Profile />} />
+        
           {/* <Route path='/add' element={<Add />} /> */}
 
         </Routes>
@@ -40,7 +43,7 @@ const { isLoading, error, isAuthenticated } = useAuth0();
 
       </section>
 
-      <nav className='nav-bottom'><Navbar /></nav>
+      <footer className='nav-bottom'><Navbar /></footer>
 
       
     
@@ -57,7 +60,7 @@ const { isLoading, error, isAuthenticated } = useAuth0();
   
   
       
-    </main>
+    
   </BrowserRouter>
   )
 }

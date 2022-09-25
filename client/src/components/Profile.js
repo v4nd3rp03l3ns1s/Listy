@@ -18,7 +18,7 @@ const Profile = () => {
            <article>
                <section className='profile-nav-bar'>
                    {user?.picture && <img className='profile-pic' src={user.picture} />}
-                    <h2>{user?.name}</h2>
+                    <h2 className='profile-name'>{user?.name}</h2>
                     <button className='friends-button'><img className='friends-icon' src ='https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/537/original/friends.png'/></button>
                    </section>
 
@@ -27,7 +27,7 @@ const Profile = () => {
                {/* <ul>
                    {Object.keys(user).map((objKey, i) => <li key={i}>{objKey}: {user[objKey]}</li>)}
                </ul> */}
-           <LogoutButton />
+           {/* <LogoutButton /> */}
            <div className='posts-container'><Add /></div>
            </article>
         </main>

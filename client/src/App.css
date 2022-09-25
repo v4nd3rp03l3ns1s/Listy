@@ -10,6 +10,7 @@
   flex-direction: column;
   background: rgb(234,244,244);
   background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%);
+  /* background: white; */
 }
 
 
@@ -25,7 +26,7 @@
   /* background: rgb(234,244,244);
   background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
   /* background-color: blue; */
-  flex: 1;
+  /* flex: 1; */
 
 }
 
@@ -103,30 +104,49 @@
 
 .main-content{
   display: flex;
-  position: relative;
-  height: 80%;
-  background: pink;
+  position: fixed;
+  height: 80vh;
+  width: 100vw;
+  /* background: red; */
+  background: white;
+
 }
 
 .nav-top{
-  height: 10%;
+  height: 10vh;
+  /* background-color: blue; */
+  background: white;
+  position: sticky;
 }
 
 .nav-bottom{
   display: flex;
-  position: absolute;
-  height: 10vh;
-  background-color: blue;
+  position: fixed;
+  /* height: 109vh; */
+  /* background-color: pink; */
+  bottom: 0;
+  left: 0;
+}
 
+
+/* this one controls the color of the bottom nav bar */
+.nav{
+  /* display: flex; */
+  /* position: fixed; */
+  height: 10vh;
+  /* background-color: pink; */
+  background: white;
+  width: 100vw;
+  /* bottom: 0; */
 }
 
 .profile-page-div{
   display: flex;
   position: fixed;
-  background-color: red;
+  /* background-color: red; */
   justify-content: center;
   align-items:flex-start;
-  min-height: 80%;
+  min-height: 80vh;
   width: 100vw;
   bottom: 10%;
   
@@ -141,12 +161,12 @@
   /* align-items: center; */
 }
 
-.nav{
+/* .nav{
   display: flex;
   position: relative;
   align-items: flex-end;
-  /* background-color: red; */
-}
+  background-color: red;
+} */
 
 .profile-logo{
   display: flex;
@@ -191,14 +211,19 @@
   height: 10vh;
   position: sticky;
   left: 5%;
+  /* border-bottom: 4px solid #333333; */
 }
 
 .profile-nav-bar{
   display: flex;
-  height: 10vh;
-  min-width: 100vw;
-  /* background: blue; */
-  margin-bottom: 10px;
+  position: fixed;
+  height: 13vh;
+  width: 100vw;
+  /* background-color: yellow; */
+  top: 12%;
+  background: white;
+  left: 0;
+  /* margin-bottom: 10px; */
 }
 
 .friends-button{
@@ -209,8 +234,50 @@
 .friends-icon{
   display: flex;
   position: fixed;
-  bottom: 84%;
+  bottom: 83%;
   right: 2%;
   height: 5vh;
   width: 5vh;
+}
+
+.posts-container{
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  /* background-color: antiquewhite; */
+  height: 63vh;
+  width: 100vw;
+  left: 0;
+  bottom: 11%;
+  overflow-y: scroll;
+  /* margin-top: 120px; */
+}
+
+.logout-button{
+  display: flex;
+  position: fixed;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  background-color: #31433b;
+  border-radius: 10px;
+  color: white;
+  width: 30%;
+  height: 6vh;
+  right: 5%;
+  top: 2%;
+  /* bottom: 30%; */
+}
+
+.profile-pic{
+  border-radius: 50%;
+  margin-left: 5px;
+  /* margin-top: 5px; */
+  height: 10vh;
+  /* width: 10vw; */
+}
+
+.profile-name{
+  margin-left: 10px;
+  margin-top: 5px;
 }

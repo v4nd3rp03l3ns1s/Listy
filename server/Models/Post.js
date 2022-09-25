@@ -13,6 +13,10 @@ const PostSchema = new mongoose.Schema({
     genre: {
         type: String,
         require: true
+    },
+    image: {
+        type: String,
+        require: true
     }
 
 })

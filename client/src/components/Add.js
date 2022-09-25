@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Add.css'
+import axios from 'axios'
+import FileBase64 from 'react-file-base64';
 
 
 
@@ -14,19 +16,17 @@ export const Add = () => {
     const [name, setName] = useState('')
     const [rating, setRating] = useState('')
     const [genre, setGenre] = useState('')
+    const [image, setImage] = useState('')
     const [popupActive, setPopupActive] = useState(false);
-
+    
 
     useEffect(() =>{
-      GetPosts();
+        axios
+        .get('http://localhost:3030/profile')
+        .then(result => setPosts(result.data))
+        .catch(err => console.error('Error: ', err))
     }, [])
-  
-    const GetPosts = () =>{
-      fetch(baseUrl + '/profile')
-      .then(result => result.json())
-      .then(data => setPosts(data))
-      .catch(err => console.error('Error: ', err))
-    }
+
 
     const onSubmit = (e) =>{
 
@@ -35,13 +35,28 @@ export const Add = () => {
         onPostAdded({
             name,
             rating,
-            genre
+            genre,
+            image
         });
+
 
         setName('')
         setRating('')
         setGenre('')
+        setImage('')
+        
+
+
+        //for the file upload?? - try and come here if does not work
+        // axios
+        //     .post('/profile', formData)
+        //     .then((res) => setPosts(res.data))
+        //     .catch((err) => {
+        //         console.log(err)
+        //     });
     }
+
+
 
     const onPostAdded = async (obj) =>{
         console.log(obj)
@@ -51,7 +66,9 @@ export const Add = () => {
             body: JSON.stringify({
                 name: obj.name,
                 rating: obj.rating,
-                genre: obj.genre
+                genre: obj.genre,
+                image: obj.image
+
             })
         })
         const res = await data.json();
@@ -75,15 +92,25 @@ export const Add = () => {
                 <div className='modal-content'>
                 <button className='close-modal' onClick={() => setPopupActive(false)}>CLOSE</button>
 
-                <form onSubmit={onSubmit}>
+                <form onSubmit={onSubmit} encType='multipart/form-data'>
                     <div className='all-inputs'>
 
-                         <div className='upload-div' >
-                            <input type='file' id='file' accept='image/*' />
+                         {/* <div className='upload-div' >
                             <label className='upload' htmlFor='file'>
                                 <i className='material-icons'>add_photo_alternate</i> &nbsp;
                                 Select Photo
                                 </label>
+                            <input type='file' filename='postImage' accept='image/*' onChange={onChangeFile}/>
+                        </div> */}
+
+                        <div className='upload'>
+                            {/* <label htmlFor='file'>Choose Post Image</label> */}
+                            {/* <input type='file' filename='postImage' /> */}
+                            <i className='material-icons'>add_photo_alternate</i>
+                            <FileBase64
+                                type='file'
+                                multiple={ false }
+                                onDone={ ({ base64 }) => setImage({ base64}) } />
                         </div>
 
                         <div className='name-input-div'>
@@ -106,7 +133,6 @@ export const Add = () => {
                 <button className='post-modal'>POST</button>
                 </form>
 
-
                 </div>
                 
 
@@ -120,6 +146,7 @@ export const Add = () => {
                     <p className='post-name'>{post.name}</p>
                     <p className='post-rating'>{post.rating}</p>
                     <p className='post-genre'>{post.genre}</p>
+                    <div><img src={post.image} /></div>
                 </div>
             ))}
         </div>
