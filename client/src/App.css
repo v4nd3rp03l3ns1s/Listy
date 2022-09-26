@@ -8,8 +8,8 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  background: rgb(234,244,244);
-  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%);
+  /* background: rgb(234,244,244);
+  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
   /* background: white; */
 }
 
@@ -38,6 +38,8 @@
   /* box-sizing: border-box; */
   /* flex-direction: column; */
   background: white;
+  /* background: rgb(234,244,244);
+  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
   border-radius: 5px;
   justify-content: center;
   align-items:center;

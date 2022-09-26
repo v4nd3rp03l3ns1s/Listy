@@ -22,7 +22,7 @@ export const Add = () => {
 
     useEffect(() =>{
         axios
-        .get('http://localhost:3030/profile')
+        .get('http://localhost:3030/post')
         .then(result => setPosts(result.data))
         .catch(err => console.error('Error: ', err))
     }, [])
@@ -60,7 +60,7 @@ export const Add = () => {
 
     const onPostAdded = async (obj) =>{
         console.log(obj)
-        const data = await fetch(baseUrl + '/profile', {
+        const data = await fetch('/post', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             body: JSON.stringify({
@@ -71,6 +71,7 @@ export const Add = () => {
 
             })
         })
+        // TODO: add error handling
         const res = await data.json();
         setPosts([...posts, res])
     }

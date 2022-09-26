@@ -16,8 +16,10 @@ root.render(
       domain='listy.us.auth0.com'
       clientId='6aFL4m1lJjcg6n26300PoGgjf8fExYZ1'
       redirectUri={window.location.origin}
-      audience='Listy unique correct identifier'
-      scope='openid profile email'
+      // audience='Listy unique correct identifier'
+      // scope='openid profile email'
+      // audience="https://listy.us.auth0.com/api/v2/"
+      // scope="read:current_user update:current_user_metadata"
     >
 
       <App />
