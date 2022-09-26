@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const User = require('../Models/User')
 const bcrypt = require('bcrypt')
+const { checkJwt, checkJwt2 } = require('./middleware')
+
 
 
 
@@ -81,7 +83,7 @@ router.get('/', async (req, res) => {
 });
 
 //follow a user
-router.put("/:id/follow", async (req, res) => {
+router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
     //if it is not the same user
     if(req.body.userId !== req.params.id){
         try {

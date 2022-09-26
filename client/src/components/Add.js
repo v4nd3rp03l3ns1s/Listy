@@ -113,7 +113,7 @@ export const Add = ({username}) => {
             console.warn("consent required as we are running in localhost. Using workaround https://github.com/auth0/auth0-react/issues/65")
             accessToken = await getAccessTokenWithPopup(opts)
         }
-        const data = await fetch('/api/posts', {
+        const data = await fetch('http://localhost:3030/api/posts', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
             headers: {'Content-type': 'application/json', Authorization: `Bearer ${accessToken}`,},
