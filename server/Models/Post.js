@@ -2,6 +2,10 @@ const mongoose = require('mongoose')
 // const Schema = new mongoose.Schema;
 
 const PostSchema = new mongoose.Schema({
+    userId:{
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true,
@@ -18,11 +22,10 @@ const PostSchema = new mongoose.Schema({
         type: String,
         // required: true
     },
-    authorId: {
-        type: String,
-        required: true
+    likes: {
+        type: Array,
+        default: []
     }
-
 })
 
 const Post = mongoose.model('Post', PostSchema);

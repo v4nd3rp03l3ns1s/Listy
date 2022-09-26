@@ -16,7 +16,7 @@ export const Navbar = () => {
 
         <nav className='nav'>
 
-            <CustomLink to='/mylist'><img className='feed-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/640px-Hamburger_icon.svg.png'/></CustomLink>
+            <CustomLink to='/mainfeed'><img className='feed-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/640px-Hamburger_icon.svg.png'/></CustomLink>
             <CustomLink to='/profile'><img className='profile-logo' src='http://cdn.onlinewebfonts.com/svg/img_24787.png'/></CustomLink>
             <CustomLink to='/'><img className='search-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png'/></CustomLink>
 

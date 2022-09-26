@@ -2,79 +2,133 @@ import React, { useState, useEffect } from 'react'
 import './Add.css'
 import axios from 'axios'
 import FileBase64 from 'react-file-base64';
+import { useAuth0 } from '@auth0/auth0-react'
 
 
 
 const baseUrl = 'http://localhost:3030'
 
-export const Add = () => {
+export const Add = ({username}) => {
+
+    const { getAccessTokenSilently,getAccessTokenWithPopup } = useAuth0();
 
 
-
+    // const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+    
+    
+    
+    
     const [posts, setPosts] = useState([])
-
+    
     const [name, setName] = useState('')
     const [rating, setRating] = useState('')
     const [genre, setGenre] = useState('')
     const [image, setImage] = useState('')
     const [popupActive, setPopupActive] = useState(false);
     
-
+    
     useEffect(() =>{
+
+        // const fetchUserPosts = async () =>{
+        //     await axios.get('http://localhost:3030/api/posts/profile/milita')
+        // }
         axios
-        .get('http://localhost:3030/post')
+        // .get('http://localhost:3030/api/posts/mainfeed/63317780c467d34c8d8d205c')
+        .get('http://localhost:3030/api/posts/profile/milita')
         .then(result => setPosts(result.data))
         .catch(err => console.error('Error: ', err))
+        // fetchUserPosts();
     }, [])
-
-
+    
+    
     const onSubmit = (e) =>{
-
+        
         e.preventDefault();
-
+        
         onPostAdded({
             name,
             rating,
             genre,
             image
         });
-
-
+        
+        
         setName('')
         setRating('')
         setGenre('')
         setImage('')
         
-
-
+        
+        
         //for the file upload?? - try and come here if does not work
         // axios
         //     .post('/profile', formData)
         //     .then((res) => setPosts(res.data))
         //     .catch((err) => {
-        //         console.log(err)
-        //     });
-    }
+            //         console.log(err)
+            //     });
+        }
+        
+        
+        
+        
+    //     const onPostAdded = async (obj) =>{
 
+            
 
+    //         // const accessToken = await getAccessTokenSilently({
+    //         //     audience: "http://localhost:3030",
+    //         //     scope: "read:current_user",
+    //         //   });
 
-    const onPostAdded = async (obj) =>{
-        console.log(obj)
-        const data = await fetch('/post', {
+        
+
+    //         console.log(obj)
+    //         const data = await fetch('http://localhost:3030/api/posts', {
+    //             method: 'POST',
+    //             headers: {'Content-type': 'application/json', /*Authorization: `Bearer ${accessToken}`*/},
+    //             body: JSON.stringify({
+    //                 name: obj.name,
+    //                 rating: obj.rating,
+    //                 genre: obj.genre,
+    //                 // image: obj.image
+
+    //         })
+    //     })
+    //     // const data = await axios.post('http://localhost:3030/api/posts/')
+    //     // TODO: add error handling
+    //     const res = await data.json();
+    //     setPosts([...posts, res])
+    // }
+
+    const onPostAdded = async (obj) => {
+        let accessToken = ""
+        const opts = {
+            audience: "http://localhost:3030",
+            scope: 'write:posts openid',
+        }
+        try {
+            accessToken = await getAccessTokenSilently(opts);
+        } catch(e) {
+            console.warn("consent required as we are running in localhost. Using workaround https://github.com/auth0/auth0-react/issues/65")
+            accessToken = await getAccessTokenWithPopup(opts)
+        }
+        const data = await fetch('/api/posts', {
             method: 'POST',
             headers: {'Content-type': 'application/json'},
+            headers: {'Content-type': 'application/json', Authorization: `Bearer ${accessToken}`,},
             body: JSON.stringify({
                 name: obj.name,
                 rating: obj.rating,
                 genre: obj.genre,
                 image: obj.image
-
             })
         })
         // TODO: add error handling
         const res = await data.json();
         setPosts([...posts, res])
     }
+    
 
 
 

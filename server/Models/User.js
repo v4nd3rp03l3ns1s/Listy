@@ -1,42 +1,34 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
+// const Schema = new mongoose.Schema;
 
 const UserSchema = new mongoose.Schema({
-    username:{
-        type: String,
-        require: true,
-        min: 5,
-        max: 25,
-        unique: true
-    },
-    password:{
+    userId: {
         type: String,
         required: true,
-        min: 7
+        unique: true
     },
-    profilePicture:{
-        type: String,
-        default: ''
-    },
-    followers:{
+    // email: {
+    //     type: String,
+    //     required: true,
+    //     unique: true
+    // },
+    // profilePicture: {
+    //     type: String,
+    //     default: ''
+    // },
+    followers: {
         type: Array,
         default: []
     },
-    following:{
+    following: {
         type: Array,
         default: []
     },
-    isAdmin:{
-        type: Boolean,
-        default: false
-    },
-    desc:{
-        type: String,
-        max: 100
-    }
-},
-//whenever you create a user or update it, its gonna automatically update our timestamps
-{timestamps: true}
-);
+    // isAdmin:{
+    //     type: Boolean,
+    //     default: false
+    // },
+
+})
 
 module.exports = mongoose.model('User', UserSchema);
-

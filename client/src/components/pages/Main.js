@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Navbar } from '../Navbar';
 import blackListyLogo from '../pictures/listyLogoBlack.svg'
 import { LogoNavbar } from '../LogoNavbar';
+import { MainFeed } from './MainFeed';
 
 
 export const Main = () => {
@@ -31,6 +32,14 @@ const { isLoading, error, isAuthenticated } = useAuth0();
         <Routes>
           {/* <Route path='/' element={</>} /> */}
           <Route path='/' element={<LoginPage />} />
+          {/* <Route path='/login' element='' /> */}
+          <Route path='/register' element='' />
+          <Route path='/profile/:username' element='' />
+          <Route path='/mainfeed' element={<MainFeed/>} />
+
+
+
+
           {/* <Route path='/feed' element={<MainFeed />} /> */}
 
 
