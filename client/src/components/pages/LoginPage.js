@@ -8,43 +8,31 @@ import blackListyLogo from '../pictures/listyLogoBlack.svg'
 
 export const LoginPage = () => {
 
-const { isLoading, isAuthenticated } = useAuth0();
+  const { isLoading, isAuthenticated } = useAuth0();
 
-if (isLoading){
-  return <div>Loading...</div>
-}
-
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
 
-    
-
-    
     !isAuthenticated && (
 
-        <>
+      <>
 
         <div className='login-page'>
-      
-        <img className='black-listy-logo' src={blackListyLogo} />
 
-        <LoginButton />
-        <SignUpButton />
+          <img className='black-listy-logo' src={blackListyLogo} />
 
-    </div>
+          <LoginButton />
+          <SignUpButton />
 
+        </div>
 
-
-
-
-    </>
+      </>
     )
 
-
-
   
-
-
 
   )
 }

@@ -24,7 +24,10 @@ const checkJwt2 = async (req, res, next) => {
         console.log('auth0 user does not exsist in local database, creating...')
         const newUser = new User({ _id: req.auth.userId });
         await newUser.save();
+        user = newUser
+        // req.verifiedId = newUser_id
     }
+    req.currUser = user
     next()
 };
 

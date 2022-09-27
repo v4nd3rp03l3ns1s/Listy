@@ -14,6 +14,8 @@ const postRoute = require('./routes/posts');
 
 
 
+
+
 const app = express();
 app.use(cors());
 
@@ -23,6 +25,9 @@ const PORT = 3030;
 app.use(express.json());
 app.use(helmet())
 app.use(morgan('common'))
+
+
+
 
 //address for rest API
 app.use('/api/users', userRoute);
@@ -55,34 +60,7 @@ const config = {
 app.use(auth(config));
 
 
-// app.get('/post', async (req, res) => {
-//     try { 
-//         const posts = await Post.find();
-        
-//         res.json(posts)
-        
-//     } catch (error) {
-//         console.log(error)
-//         res.sendStatus(400)  
-//     }
-// })
 
-// app.post('/post', async (req, res) =>{
-//     try {
-//       const post = new Post({
-//         name: req.body.name,
-//         rating: req.body.rating,
-//         genre: req.body.genre,
-//       });
-//       //TODO: add error handling
-//       await post.save();
-//       console.log(req.body)
-//       res.status(201).json(post);
-//     } catch (error) {
-//       console.log(error)
-//       res.sendStatus(400);
-//     }
-//   })
 
 
 

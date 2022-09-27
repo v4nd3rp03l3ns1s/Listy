@@ -7,6 +7,7 @@ import { Navbar } from '../Navbar';
 import blackListyLogo from '../pictures/listyLogoBlack.svg'
 import { LogoNavbar } from '../LogoNavbar';
 import { MainFeed } from './MainFeed';
+import { SearchPage } from './SearchPage';
 
 
 export const Main = () => {
@@ -36,6 +37,8 @@ const { isLoading, error, isAuthenticated } = useAuth0();
           <Route path='/register' element='' />
           <Route path='/profile/:username' element='' />
           <Route path='/mainfeed' element={<MainFeed/>} />
+          <Route path='/search' element={<SearchPage/>} />
+
 
 
 

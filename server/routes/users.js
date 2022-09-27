@@ -1,56 +1,13 @@
 const router = require('express').Router();
 const User = require('../Models/User')
-const bcrypt = require('bcrypt')
 const { checkJwt, checkJwt2 } = require('./middleware')
+const Post = require('../Models/Post');
 
-
-
-
-
-//update user
-router.put('/:id', async (req, res)=>{
-    //if the user id does not match with that id
-    if(req.body.userId === req.params.id || req.body.isAdmin){
-        if(req.body.password){
-            try{
-                const salt = await bcrypt.genSalt(10)
-                req.body.password = await bcrypt.hash(req.body.password, salt);
-            } catch(error){
-                return res.status(500).json(error);
-            }
-        }
-        try{
-            const user = await User.findByIdAndUpdate(req.params.id, {
-                //this will automatically set all inputs inside the body
-                $set: req.body
-            });
-            res.status(200).json('Account has been updated')
-        } catch(error){
-            return res.status(500).json(error)
-        }
-
-    } else{
-        return res.status(403).json('Updates are only possible on your account')
-    }
-});
-
-//delete user
-router.delete('/:id', async (req, res)=>{
-    //if the user id does not match with that id
-    if(req.body.userId === req.params.id || req.body.isAdmin){
-     
-        try{
-            const user = await User.findByIdAndDelete(req.params.id);
-            res.status(200).json('Account has been deleted')
-        } catch(error){
-            return res.status(500).json(error)
-        }
-
-    } else{
-        return res.status(403).json('You can only delete your own account')
-    }
-});
-
+//get the users posts
+router.get('/posts', [checkJwt, checkJwt2], async (req, res) => {
+    const posts = await Post.find({ userId: req.auth.userId})
+    res.status(200).json(posts)
+})
 
 //get a user
 // router.get('/:id', async (req, res) => {
@@ -85,10 +42,10 @@ router.get('/', async (req, res) => {
 //follow a user
 router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
     //if it is not the same user
-    if(req.body.userId !== req.params.id){
+    if(req.auth.userId !== req.params.id){
         try {
             const user = await User.findById(req.params.id);
-            const currUser = await User.findById(req.auth.userId);
+            const currUser = req.currUser;
 
             if(!user.followers.includes(req.auth.userId)){
                 await user.updateOne({$push:{followers: req.auth.userId}});
@@ -110,15 +67,15 @@ router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
 })
 
 //unfollow a user
-router.put("/:id/unfollow", async (req, res) => {
+router.put("/:id/unfollow", [checkJwt, checkJwt2], async (req, res) => {
     //if it is not the same user
-    if(req.body.userId !== req.params.id){
+    if(req.auth.userId !== req.params.id){
         try {
             const user = await User.findById(req.params.id);
-            const currUser = await User.findById(req.body.userId);
+            const currUser = req.currUser;
 
-            if(user.followers.includes(req.body.userId)){
-                await user.updateOne({$pull:{followers: req.body.userId}});
+            if(user.followers.includes(req.auth.userId)){
+                await user.updateOne({$pull:{followers: req.auth.userId}});
                 await currUser.updateOne({$pull:{following: req.params.id}});
                 res.status(200).json('user unfollowed')
 
@@ -137,8 +94,8 @@ router.put("/:id/unfollow", async (req, res) => {
 })
 
 
-router.get('/', (req, res) =>{
-    res.send('hey the user route is working')
-})
+// router.get('/', (req, res) =>{
+//     res.send('hey the user route is working')
+// })
 
 module.exports = router;

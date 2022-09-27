@@ -4,14 +4,20 @@ const LoginButton = () => {
 
     const { loginWithRedirect, isAuthenticated, redirectUri } = useAuth0();
     return (
-        !isAuthenticated && (
+        
+        
+   
+
+        !isAuthenticated && ( 
 
             <button className='login-button' onClick={()=> loginWithRedirect()}>
                 Log In
             </button>
 
-        )
+        ) 
        
+        
+        
     )
 }
 

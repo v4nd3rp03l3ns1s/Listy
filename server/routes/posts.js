@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const Post = require('../Models/Post');
 const User = require('../Models/User');
-const { auth } = require('express-oauth2-jwt-bearer');
-const { requiresAuth } = require('express-openid-connect');
-const { expressjwt: jwt } = require("express-jwt");
-const jwks = require('jwks-rsa')
+// const { auth } = require('express-oauth2-jwt-bearer');
+// const { requiresAuth } = require('express-openid-connect');
+// const { expressjwt: jwt } = require("express-jwt");
+// const jwks = require('jwks-rsa')
 const axios = require('axios');
 const { checkJwt, checkJwt2 } = require('./middleware')
 
@@ -18,6 +18,7 @@ router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
       rating: req.body.rating,
       genre: req.body.genre,
       userId: req.auth.userId,
+      image: req.body.image.base64
     });
     //TODO: add error handling
     await post.save();
@@ -29,39 +30,6 @@ router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
   }
 })
 
-
-// router.post('/', verifyJwt, requiresAuth(), async (req, res) =>{
-//   const userId = req.auth.payload.sub.split("|")[1]
-//   try {
-//     const post = new Post({
-//       name: req.body.name,
-//       rating: req.body.rating,
-//       genre: req.body.genre,
-//       userId: userId,
-//     });
-//     //TODO: add error handling
-//     await post.save();
-//     console.log(req.body)
-//     res.status(201).json(post);
-//   } catch (error) {
-//     console.log(error)
-//     res.sendStatus(400);
-//   }
-// })
-
-// try {
-  //       const post = new Post({
-          // name: req.body.name,
-          // rating: req.body.rating,
-          // genre: req.body.genre
-  //       });
-  //       post.save();
-  //       console.log(req.body)
-  //       res.status(201).json(post);
-  //     } catch (error) {
-  //       console.log(error)
-  //       res.sendStatus(400);
-  //     }
 
 //update a post
 router.put('/:id', async (req, res) => {
@@ -120,10 +88,28 @@ router.get('/:id', async (req, res) =>{
 })
 
 //get main feed posts - call all foloowing  of the user and all their posts
+// router.get('/mainfeed', [checkJwt, checkJwt2], async (req, res) =>{
+//   try {
+//     const currUser = req.currUser;
+//     const userPosts = await Post.find({ userId: req.auth.userId});
+//     const friendPosts = await Promise.all(
+//       currUser.following.map((friendId) =>{
+//         //this will return each post
+//         return Post.find({ userId: friendId});
+//       })
+//     )
+//     res.json(userPosts.concat(...friendPosts))
+    
+//   } catch (error) {
+//     res.status(500).json(error)
+//   }
+
+// })
+
 router.get('/mainfeed/:userId', async (req, res) =>{
   try {
     const currUser = await User.findById(req.params.userId);
-    const userPosts = await Post.find({userId: currUser._id});
+    const userPosts = await Post.find({ userId: req.params.userId});
     const friendPosts = await Promise.all(
       currUser.following.map((friendId) =>{
         //this will return each post
@@ -138,17 +124,52 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 
 })
 
-//get users all post 
-router.get('/profile/:username', async (req, res) =>{
-  try {
-    const user = await User.findOne({ username: req.params.username });
-    const posts = await Post.find({ userId: user._id });
-    res.status(200).json(posts)
-  } catch (error) {
-    res.status(500).json(error)
-  }
+// router.get('/mainfeed', [checkJwt, checkJwt2], async (req, res) =>{
+//   const userId = req.currUser;
+//   try {
+//     const userPosts = await Post.find({ userId: req.auth.userId});
+//     const friendPosts = await User.aggregate([
+//       {
+//         $match: {
+//           _id: userId
+//         },
+//         $lookup: {
+//           from: 'posts',
+//           localField: 'following',
+//           foreignField: 'userId',
+//           as: 'friendPosts'
+//         },
+//         $project: {
+//           friendPosts: 1,
+//           _id: 0
+//         }
+//       }
+//     ])
 
-})
+//     res.status(200).json(userPosts.concat(...friendPosts[0].friendPosts))
+    
+//   } catch (error) {
+//     res.status(500).json(error)
+//   }
+
+// })
+
+// router.get('/posts', [checkJwt, checkJwt2], async (req, res) => {
+//   const posts = await Post.find({ userId: req.auth.userId})
+//   res.status(200).json(posts)
+// })
+
+//get users all post 
+// router.get('/profile', [checkJwt, checkJwt2], async (req, res) =>{
+//   try {
+//     const user = await User.findOne({ userId: req.auth.userId });
+//     const posts = await Post.find({ userId: user._id });
+//     res.status(200).json(posts)
+//   } catch (error) {
+//     res.status(500).json(error)
+//   }
+
+// })
 
 // router.get('/profile', async (req, res) => {
 //     try { 
@@ -178,13 +199,13 @@ router.get('/profile/:username', async (req, res) =>{
 //     }
 //   })
 
-//   router.delete('/post/delete/:id', async (req, res) =>{
-//   try {
-//     const result = await Post.findByIdAndDelete(req.params.id)
-//     res.json(result)
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })
+  router.delete('/post/delete/:id', async (req, res) =>{
+  try {
+    const result = await Post.findByIdAndDelete(req.params.id)
+    res.json(result)
+  } catch (error) {
+    console.log(error)
+  }
+})
 
 module.exports = router;
