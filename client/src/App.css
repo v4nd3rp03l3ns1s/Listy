@@ -9,39 +9,12 @@
   display: flex;
   min-height: 100vh;
   flex-direction: column;
-  /* background: rgb(234,244,244);
-  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
-  
-  /* background: white; */
 }
-
-
-.main{
-  /* display: flex;
-  margin: 0;
-  min-height: 100vh;
-  width: 100%; */
-  /* justify-content: center; */
-  /* align-items: center; */
-  /* /* background: rgb(94,94,94); */
-  /* background: linear-gradient(270deg, rgba(94,94,94,1) 0%, rgba(38,38,38,1) 100%); */ 
-  /* background: rgb(234,244,244);
-  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
-  /* background-color: blue; */
-  /* flex: 1; */
-
-}
-
-
 
 .login-page{
   display: flex;
   position: fixed;
-  /* box-sizing: border-box; */
-  /* flex-direction: column; */
   background: white;
-  /* background: rgb(234,244,244);
-  background: radial-gradient(circle, rgba(234,244,244,1) 0%, rgba(107,144,128,1) 100%); */
   border-radius: 5px;
   justify-content: center;
   align-items:center;
@@ -54,7 +27,6 @@
   0 22.3px 17.9px rgba(0, 0, 0, 0.072),
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
   0 100px 80px rgba(0, 0, 0, 0.12);
-  /* flex-wrap: wrap; */
   left: 10%;
   bottom: 20%;
 }
@@ -72,8 +44,6 @@
   height: 6vh;
   bottom: 40%;
   font-weight: bold;
-  /* margin: 3px; */
-  /* margin-top: 30px; */
 }
 
 .signup-button{
@@ -89,9 +59,6 @@
   height: 6vh;
   bottom: 30%;
   font-weight: bold;
-
-  /* margin: 3px; */
-  /* margin-top: 30px; */
 }
 
 .black-listy-logo{
@@ -99,7 +66,6 @@
   position: fixed;
   bottom: 50%;
   height: 10vh;
-  /* width: 80%; */
 }
 
 .black-listy-nav-logo{
@@ -114,14 +80,11 @@
   position: fixed;
   height: 80vh;
   width: 100vw;
-  /* background: red; */
   background: white;
-
 }
 
 .nav-top{
   height: 10vh;
-  /* background-color: blue; */
   background: white;
   position: sticky;
 }
@@ -129,8 +92,6 @@
 .nav-bottom{
   display: flex;
   position: fixed;
-  /* height: 109vh; */
-  /* background-color: pink; */
   bottom: 0;
   left: 0;
 }
@@ -138,42 +99,25 @@
 
 /* this one controls the color of the bottom nav bar */
 .nav{
-  /* display: flex; */
-  /* position: fixed; */
   height: 10vh;
-  /* background-color: pink; */
   background: white;
   width: 100vw;
-  /* bottom: 0; */
 }
 
 .profile-page-div{
   display: flex;
   position: fixed;
-  /* background-color: red; */
   justify-content: center;
   align-items:flex-start;
   min-height: 80vh;
   width: 100vw;
   bottom: 10%;
-  
-  /* min-width: 100vh; */
-  /* flex-wrap: wrap; */
 }
 
 .profile-info{
   display: flex;
   position: relative;
-  /* justify-content: center; */
-  /* align-items: center; */
 }
-
-/* .nav{
-  display: flex;
-  position: relative;
-  align-items: flex-end;
-  background-color: red;
-} */
 
 .profile-logo{
   display: flex;
@@ -196,7 +140,6 @@
 .add-logo{
   display: flex;
   position: fixed;
-  /* bottom: 2%; */
   right: 2%;
   height: 5vh;
   width: 5vh;
@@ -213,12 +156,9 @@
 }
 
 .logo-navbar-div{
-  /* display: flex; */
-  /* align-items: flex-start; */
   height: 10vh;
   position: sticky;
   left: 5%;
-  /* border-bottom: 4px solid #333333; */
 }
 
 .profile-nav-bar{
@@ -226,11 +166,9 @@
   position: fixed;
   height: 13vh;
   width: 100vw;
-  /* background-color: yellow; */
   top: 12%;
   background: white;
   left: 0;
-  /* margin-bottom: 10px; */
 }
 
 .friends-button{
@@ -263,15 +201,12 @@
   right: 5%;
   top: 2%;
   font-weight: bold;
-  /* bottom: 30%; */
 }
 
 .profile-pic{
   border-radius: 50%;
   margin-left: 5px;
-  /* margin-top: 5px; */
   height: 10vh;
-  /* width: 10vw; */
 }
 
 .profile-name{
@@ -284,15 +219,11 @@
   display: flex; 
   flex-direction: column;
   position: fixed;
-  /* background-color: red; */
   align-items: center;
-  /* justify-content: center;  */
 }
 
 .search-bar{
   border: none;
-  /* outline: none; */
-  /* background-color: blue; */
   height: 5vh;
   text-align: center;
   border-radius: 10px;

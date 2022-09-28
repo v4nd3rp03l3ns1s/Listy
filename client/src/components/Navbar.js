@@ -1,15 +1,11 @@
 import React from 'react'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
-// import feedLogo from './pictures/feedLogo.svg'
-// import { Add } from './Add'
+
 
 export const Navbar = () => {
 
     const { isAuthenticated } = useAuth0();
-
-
-
 
     return (
         isAuthenticated && (
@@ -21,9 +17,7 @@ export const Navbar = () => {
                 <CustomLink to='/search'><img className='search-logo' src='https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Search_Icon.svg/1024px-Search_Icon.svg.png' /></CustomLink>
 
                 {/* <CustomLink to='/add'><img className='add-logo' src='https://icons.veryicon.com/png/o/object/material-design-icons/add-49.png'/></CustomLink> */}
-                {/* <Add /> */}
-
-
+        
             </nav>
         )
     )

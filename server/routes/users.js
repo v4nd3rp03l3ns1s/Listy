@@ -3,12 +3,14 @@ const User = require('../Models/User')
 const { checkJwt, checkJwt2 } = require('./middleware')
 const Post = require('../Models/Post');
 
-//get the users posts
+//get the users posts with Authentication -- TODO: should probably go to posts route! 
 router.get('/posts', [checkJwt, checkJwt2], async (req, res) => {
-    const posts = await Post.find({ userId: req.auth.userId})
+    const posts = await Post.find({ userId: req.auth.userId })
     res.status(200).json(posts)
 })
 
+
+//TODO: GET A USER -> will be used in the search 
 //get a user
 // router.get('/:id', async (req, res) => {
 //     try {
@@ -27,11 +29,11 @@ router.get('/', async (req, res) => {
     const userId = req.query.userId;
     const username = req.query.username;
     try {
-        const user = userId 
-        ? await User.findById(userId) 
-        : await User.findOne({username: username})
+        const user = userId
+            ? await User.findById(userId)
+            : await User.findOne({ username: username })
         //take away what we dont want to see
-        const {password, email, isAdmin, ...other } = user._doc
+        const { password, email, isAdmin, ...other } = user._doc
         res.status(200).json(other)
 
     } catch (error) {
@@ -39,17 +41,17 @@ router.get('/', async (req, res) => {
     }
 });
 
-//follow a user
+//follow a user (with JWT) TODO: implement in frontend
 router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
     //if it is not the same user
-    if(req.auth.userId !== req.params.id){
+    if (req.auth.userId !== req.params.id) {
         try {
             const user = await User.findById(req.params.id);
             const currUser = req.currUser;
 
-            if(!user.followers.includes(req.auth.userId)){
-                await user.updateOne({$push:{followers: req.auth.userId}});
-                await currUser.updateOne({$push:{following: req.params.id}});
+            if (!user.followers.includes(req.auth.userId)) {
+                await user.updateOne({ $push: { followers: req.auth.userId } });
+                await currUser.updateOne({ $push: { following: req.params.id } });
                 res.status(200).json('user followed')
 
             } else {
@@ -57,7 +59,7 @@ router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
             }
 
         } catch (error) {
-            res.status(500).json(error)  
+            res.status(500).json(error)
         }
 
     } else {
@@ -66,17 +68,17 @@ router.put("/:id/follow", [checkJwt, checkJwt2], async (req, res) => {
     }
 })
 
-//unfollow a user
+//unfollow a user (with JWT) TODO: implement in frontend
 router.put("/:id/unfollow", [checkJwt, checkJwt2], async (req, res) => {
     //if it is not the same user
-    if(req.auth.userId !== req.params.id){
+    if (req.auth.userId !== req.params.id) {
         try {
             const user = await User.findById(req.params.id);
             const currUser = req.currUser;
 
-            if(user.followers.includes(req.auth.userId)){
-                await user.updateOne({$pull:{followers: req.auth.userId}});
-                await currUser.updateOne({$pull:{following: req.params.id}});
+            if (user.followers.includes(req.auth.userId)) {
+                await user.updateOne({ $pull: { followers: req.auth.userId } });
+                await currUser.updateOne({ $pull: { following: req.params.id } });
                 res.status(200).json('user unfollowed')
 
             } else {
@@ -84,7 +86,7 @@ router.put("/:id/unfollow", [checkJwt, checkJwt2], async (req, res) => {
             }
 
         } catch (error) {
-            res.status(500).json(error)  
+            res.status(500).json(error)
         }
 
     } else {
@@ -94,8 +96,5 @@ router.put("/:id/unfollow", [checkJwt, checkJwt2], async (req, res) => {
 })
 
 
-// router.get('/', (req, res) =>{
-//     res.send('hey the user route is working')
-// })
 
 module.exports = router;

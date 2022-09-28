@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Add.css'
 import FileBase64 from 'react-file-base64';
-import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
+import { useAuth0 } from '@auth0/auth0-react'
 
 
-export const Add = ({ username }) => {
+export const Add = () => {
 
     const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
@@ -81,7 +81,7 @@ export const Add = ({ username }) => {
 
         onPostAdded();
 
-        //clears out the fields after we post
+        //clears out the fields after post
         setName('')
         setRating('')
         setGenre('')
@@ -95,8 +95,8 @@ export const Add = ({ username }) => {
         }).then(res => res.json());
 
         setPosts(posts => posts.filter(post => post._id !== data._id))
-
     }
+
 
 
 
@@ -156,10 +156,10 @@ export const Add = ({ username }) => {
                     <div className='image-and-post' key={post._id}>
                         <img className='post-image' src={post.image} />
                         <section className='post-container'>
-                        <h1 className='post-name'>{post.name}</h1>
-                        <p className='post-rating'>{post.rating}</p>
-                        <p className='post-genre'>{post.genre}</p>
-                        <button className='delete-button' onClick={() => deletePost(post._id)}>X</button>
+                            <h1 className='post-name'>{post.name}</h1>
+                            <p className='post-rating'>{post.rating}</p>
+                            <p className='post-genre'>{post.genre}</p>
+                            <button className='delete-button' onClick={() => deletePost(post._id)}>X</button>
                         </section>
                     </div>
                 ))}

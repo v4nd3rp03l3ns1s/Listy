@@ -6,14 +6,9 @@ const morgan = require('morgan')
 const Post = require('./Models/Post');
 require('dotenv').config();
 const { auth } = require('express-openid-connect');
-// const { requiresAuth } = require('express-openid-connect');
 const userRoute = require('./routes/users');
-const authRoute = require('./routes/auth');
 const postRoute = require('./routes/posts');
-
-
-
-
+// const authRoute = require('./routes/auth');
 
 
 const app = express();
@@ -27,24 +22,22 @@ app.use(helmet())
 app.use(morgan('common'))
 
 
-
-
 //address for rest API
 app.use('/api/users', userRoute);
-app.use('/api/auth', authRoute);
 app.use('/api/posts', postRoute);
 
-
+//IGNORE
+// app.use('/api/auth', authRoute);
 
 
 const atlasUri = process.env.ATLAS_URI
 
 mongoose.connect(atlasUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 });
 
-const connection =  mongoose.connection;
+const connection = mongoose.connection;
 connection.once('open', () => console.log('Database connection successful🍃'))
 
 const config = {
@@ -60,26 +53,17 @@ const config = {
 app.use(auth(config));
 
 
+//temporary, will go to the post route later
+// app.delete('/post/:id', async (req, res) => {
+//   try {
+//     const result = await Post.findByIdAndDelete(req.params.id)
+//     res.json(result)
+//   } catch (error) {
+//     console.log(error)
+//   }
+// })
 
 
-
-
-
-  app.delete('/post/:id', async (req, res) =>{
-  try {
-    const result = await Post.findByIdAndDelete(req.params.id)
-    res.json(result)
-  } catch (error) {
-    console.log(error)
-  }
+app.listen(PORT, () => {
+  console.log(`Listening on http://localhost:${PORT} 🚀`)
 })
-
-//to update fix in frontend later?
-
-
-
-
-
-app.listen(PORT, ()=>{
-    console.log(`Listening on http://localhost:${PORT} 🚀`)
-  })

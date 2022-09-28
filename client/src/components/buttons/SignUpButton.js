@@ -6,14 +6,14 @@ const SignUpButton = () => {
     return (
         !isAuthenticated && (
 
-            <button className='signup-button' onClick={()=> loginWithRedirect({
+            <button className='signup-button' onClick={() => loginWithRedirect({
                 screen_hint: 'signup',
             })}>
                 Sign Up
             </button>
 
         )
-       
+
     )
 }
 

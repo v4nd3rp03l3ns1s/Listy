@@ -1,15 +1,11 @@
 const router = require('express').Router();
 const Post = require('../Models/Post');
 const User = require('../Models/User');
-// const { auth } = require('express-oauth2-jwt-bearer');
-// const { requiresAuth } = require('express-openid-connect');
-// const { expressjwt: jwt } = require("express-jwt");
-// const jwks = require('jwks-rsa')
 const axios = require('axios');
 const { checkJwt, checkJwt2 } = require('./middleware')
 
 
-
+//ADD A POST (with jwt, recognizes which user created the post)
 router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
   // const userId = req.auth.payload.sub.split("|")[1]
   try {
@@ -31,33 +27,41 @@ router.post('/', [checkJwt, checkJwt2],  async (req, res) =>{
 })
 
 
-//update a post
-router.put('/:id', async (req, res) => {
-  try {
-    const post = await Post.findById(req.params.id);
-    if(post.userId === req.body.userId){
-      await post.updateOne({$set: req.body});
-      res.status(200).json('The post has been updated')
-    } else {
-      res.status(403).json('You can only update your posts')
-    }
-  } catch (error) {
-    res.status(500).json(error)
-  }
-})
+//TODO: fix update a post 
+
+// router.put('/:id', async (req, res) => {
+//   try {
+//     const post = await Post.findById(req.params.id);
+//     if(post.userId === req.body.userId){
+//       await post.updateOne({$set: req.body});
+//       res.status(200).json('The post has been updated')
+//     } else {
+//       res.status(403).json('You can only update your posts')
+//     }
+//   } catch (error) {
+//     res.status(500).json(error)
+//   }
+// })
+
+// router.put('/post/update/:id', async (req, res) =>{
+//   try {
+//     const result = await Post.findByIdAndUpdate(req.params.id)
+//     await result.updateOne({$set: req.body});
+//           res.status(200).json('The post has been updated')
+//         } catch (error) {
+//         res.status(500).json(error)
+//       }
+// })
+
+
 
 //delete a post
-router.delete('/:id', async (req, res) => {
+router.delete('/post/delete/:id', async (req, res) =>{
   try {
-    const post = await Post.findById(req.params.id);
-    if(post.userId === req.body.userId){
-      await post.deleteOne();
-      res.status(200).json('The post has been deleted')
-    } else {
-      res.status(403).json('You can only delete your posts')
-    }
+    const result = await Post.findByIdAndDelete(req.params.id)
+    res.json(result)
   } catch (error) {
-    res.status(500).json(error)
+    console.log(error)
   }
 })
 
@@ -86,6 +90,8 @@ router.get('/:id', async (req, res) =>{
     res.status(500).json(error)
   }
 })
+
+//TODO: FIX USER MAIN FEED WITH AUTH
 
 //get main feed posts - call all foloowing  of the user and all their posts
 // router.get('/mainfeed', [checkJwt, checkJwt2], async (req, res) =>{
@@ -199,13 +205,6 @@ router.get('/mainfeed/:userId', async (req, res) =>{
 //     }
 //   })
 
-  router.delete('/post/delete/:id', async (req, res) =>{
-  try {
-    const result = await Post.findByIdAndDelete(req.params.id)
-    res.json(result)
-  } catch (error) {
-    console.log(error)
-  }
-})
+ 
 
 module.exports = router;
