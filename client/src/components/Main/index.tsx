@@ -22,7 +22,7 @@ export const Main = () => {
           <Route path='/register' element='' />
           <Route path='/profile/:username' element='' />
           <Route path='/mainfeed' element={<MainFeed />} />
-          <Route path='/search' element={<SearchPage />} />
+          <Route path='/search' element={<SearchPage isLoading={isLoading} isAuthenticated={isAuthenticated}/>} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
       </section>
