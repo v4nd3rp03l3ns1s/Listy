@@ -11,7 +11,7 @@ export const SearchPage = () => {
     }
     return (
 
-        <div>
+        <div className="container">
             { isAuthenticated ? (
               <main className='login-page'>
                 <section className='search-container'>
