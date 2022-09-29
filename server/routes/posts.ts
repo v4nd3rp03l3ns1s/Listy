@@ -3,7 +3,10 @@ const { checkJwt, checkJwt2 } = require("./middleware");
 const posts = require('../controllers/posts.ts');
 import { Request, Response } from "express";
 
-router.post("/", [checkJwt, checkJwt2], (req: Request, res: Response) => {
+
+//[checkJwt, checkJwt2], 
+
+router.post("/", (req: Request, res: Response) => {
   posts.addPost(req, res)
 });
 
