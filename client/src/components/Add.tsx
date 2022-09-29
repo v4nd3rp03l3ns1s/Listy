@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
-import './Add.css'
-import FileBase64 from 'react-file-base64';
+import React, { useState, useEffect, FormEvent } from 'react'
+import './Add.css';
 import { useAuth0 } from '@auth0/auth0-react'
+import { IPost } from './componentTypes';
 
+const FileBase64 = require('react-file-base64')
 
 export const Add = () => {
 
     const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
-
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState<IPost[]>([])
 
     const [name, setName] = useState('')
     const [rating, setRating] = useState('')
@@ -44,11 +44,11 @@ export const Add = () => {
     }, [])
 
 
-    const onSubmit = (e) => {
+    const onSubmit = (e :FormEvent<HTMLFormElement>) => {
 
         e.preventDefault();
 
-        const onPostAdded = async (obj) => {
+        const onPostAdded = async () => {
             let accessToken = ""
             const opts = {
                 audience: "http://localhost:3030",
@@ -64,7 +64,6 @@ export const Add = () => {
 
             const newPost = await fetch('http://localhost:3030/api/posts', {
                 method: 'POST',
-                headers: { 'Content-type': 'application/json' },
                 headers: { 'Content-type': 'application/json', Authorization: `Bearer ${accessToken}`, },
                 body: JSON.stringify({
                     name: name,
@@ -89,7 +88,7 @@ export const Add = () => {
 
     }
 
-    const deletePost = async id => {
+    const deletePost = async (id :string) => {
         const data = await fetch('http://localhost:3030/api/posts/post/delete/' + id, {
             method: "DELETE"
         }).then(res => res.json());
@@ -121,7 +120,7 @@ export const Add = () => {
                                     <FileBase64
                                         type='file'
                                         multiple={false}
-                                        onDone={({ base64 }) => setImage({ base64 })}
+                                        onDone={(base64:string)  => setImage(base64)} //potenitally wrong input
                                         value={image} />
                                 </div>
 
