@@ -1,5 +1,4 @@
-const mongoose = require('mongoose')
-// const Schema = new mongoose.Schema;
+import mongoose from "mongoose";
 
 const PostSchema = new mongoose.Schema({
     userId: {
