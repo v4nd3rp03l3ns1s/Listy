@@ -19,7 +19,7 @@ export const MainFeed = () => {
     useEffect(() => {
         const fetchPosts = async () => {
 
-            const res = await axios.get(postsBaseUrl + '/mainfeed/5544378348931826');
+            const res = await axios.get(postsBaseUrl + '/mainfeed/113821008080613850752');
 
             setPosts(res.data);
 
