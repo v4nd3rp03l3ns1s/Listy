@@ -5,7 +5,7 @@ const SignUpButton = () => {
   const { loginWithRedirect, isAuthenticated } = useAuth0();
     return (
 
-      <div>
+      <div className='container'>
         { !isAuthenticated ? (
           <button className='signup-button' onClick={() => loginWithRedirect({
             screen_hint: 'signup',
