@@ -18,25 +18,23 @@ const posts = {
         name: req.body.name,
         rating: req.body.rating,
         genre: req.body.genre,
-        userId: req.auth.userId,
+        userId: req.body.userId,
         image: req.body.image.base64,
       });
       //TODO: add error handling
       await post.save();
-      console.log(req.body);
       res.status(201).json(post);
     } catch (error) {
-      res.json(error);
-      res.sendStatus(400);
+      res.status(400).json(error);
     }
   },
 
   deletePost: async (req: UserAuth, res: Response) => {
     try {
       const result = await Post.findByIdAndDelete(req.params.id);
-      res.json(result);
+      res.status(204).json(result);
     } catch (error) {
-      res.json(error);
+      res.status(401).json(error);
     }
   },
 

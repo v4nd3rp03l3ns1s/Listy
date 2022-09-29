@@ -17,7 +17,7 @@ const users = require('../controllers/users')
 //     }
 // });
 
-router.get("/", users.getUser);
+router.get("/:id", users.getUser);
 
 //follow a user (with JWT) TODO: implement in frontend
 router.put("/:id/follow", [checkJwt, checkJwt2], users.followUser);
