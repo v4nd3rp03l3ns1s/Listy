@@ -9,11 +9,13 @@ import { SearchPage } from '../SearchPage';
 
 
 export const Main = () => {
-  // const { isLoading, error, isAuthenticated } = useAuth0();
+  const { isLoading, error, isAuthenticated, logout, loginWithRedirect, getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
   return (
     <BrowserRouter>
-      <nav className='nav-top'><LogoNavbar /></nav>
+      <nav className='nav-top'>
+        <LogoNavbar isAuthenticated={isAuthenticated} logout={logout} />
+      </nav>
       <section className='main-content'>
         <Routes>
           <Route path='/' element={<LoginPage />} />
