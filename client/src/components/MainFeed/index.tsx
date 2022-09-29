@@ -1,4 +1,3 @@
-import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
@@ -18,7 +17,7 @@ export const MainFeed = () => {
     useEffect(() => {
         const fetchPosts = async () => {
 
-            const res = await axios.get(postsBaseUrl + '/mainfeed/5544378348931826');
+            const res = await axios.get(postsBaseUrl + '/mainfeed/6335e3cffbd608ee0320cb14');
 
             setPosts(res.data);
 

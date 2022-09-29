@@ -21,7 +21,7 @@ export const Add = () => {
       try {
         const token = await getAccessTokenSilently();
         const response = await fetch(
-          'http://localhost:3030/api/users/posts',
+          'http://localhost:3030/api/posts/allposts',
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -80,6 +80,10 @@ export const Add = () => {
     setPosts(posts => posts.filter(post => post._id !== data._id))
   }
 
+  interface hack {
+    base64 :string
+  }
+
   return (
     <div>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -93,11 +97,6 @@ export const Add = () => {
               <div className='all-inputs'>
                 <div className='upload'>
                   <i className='material-icons'>add_photo_alternate</i>
-                  <FileBase64
-                    type='file'
-                    multiple={false}
-                    onDone={(base64:string)  => setImage(base64)} //potenitally wrong input
-                    value={image} />
                 </div>
                 <div className='name-input-div'>
                   <label>Name</label>
