@@ -1,6 +1,6 @@
-import React, { FunctionComponent } from 'react'
+import { FunctionComponent } from 'react'
 import blackListyLogo from '../assets/listyLogoBlack.svg'
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 import LogoutButton from '../LogoutButton/index';
 
 interface IProps {

@@ -14,7 +14,9 @@ const Profile = () => {
               <h2 className='profile-name'>{user?.nickname}</h2>
               <button className='friends-button'><img className='friends-icon' src='https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/537/original/friends.png' /></button>
             </section>
-            <div className='posts-container'><Add /></div>
+            <div className='posts-container'>
+              <Add />
+            </div>
           </article>
         </main>
       ) : (

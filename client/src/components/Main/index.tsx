@@ -18,7 +18,7 @@ export const Main = () => {
       </nav>
       <section className='main-content'>
         <Routes>
-          <Route path='/' element={<LoginPage />} />
+          <Route path='/' element={<LoginPage isLoading={isLoading} isAuthenticated={isAuthenticated} loginWithRedirect={loginWithRedirect} />} />
           <Route path='/register' element='' />
           <Route path='/profile/:username' element='' />
           <Route path='/mainfeed' element={<MainFeed />} />
