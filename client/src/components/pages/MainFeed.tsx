@@ -3,15 +3,13 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
 
-
-
-
 export const MainFeed = () => {
 
     const { getAccessTokenSilently } = useAuth0();
 
     const [posts, setPosts] = useState([])
 
+    //MV todo: move to a config
     const postsBaseUrl = 'http://localhost:3030/api/posts'
 
 
