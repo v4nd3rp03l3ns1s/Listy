@@ -10,14 +10,15 @@ export const LogoNavbar = () => {
 
   return (
 
-    isAuthenticated && (
-      
-      <>
-        <img className='black-listy-nav-logo' src={blackListyLogo} />
-        <LogoutButton />
-
-      </>
-
-    )
+    <div>
+      { isAuthenticated ? (
+        <div>
+          <img className='black-listy-nav-logo' src={blackListyLogo} />
+          <LogoutButton />
+        </div>
+      ) : (
+        null
+      )}
+    </div>
   )
 }

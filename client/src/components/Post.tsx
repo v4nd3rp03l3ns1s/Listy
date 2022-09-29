@@ -1,10 +1,15 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { IPost } from './componentTypes'
 
-export const Post = ({post}) => {
+interface IProps {
+  post: IPost,
+}
 
-    const [like, setLike] = useState()
+export const Post = ({post}: IProps) => {
+
+    const [like, setLike] = useState(0)
     const [isLiked, setIsLiked] = useState(false);
     const [user, setUser] = useState({})
 
@@ -13,7 +18,7 @@ export const Post = ({post}) => {
 
     //         const res = await axios.get(`http://localhost:3030/api/auth/users/${post.userId}`);
     //         setPosts(res.data);
-            
+
     //         console.log(res)
     //     };
 
