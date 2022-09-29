@@ -4,13 +4,27 @@ const SignUpButton = () => {
 
   const { loginWithRedirect, isAuthenticated } = useAuth0();
     return (
-      !isAuthenticated && (
-        <button className='signup-button' onClick={() => loginWithRedirect({
-          screen_hint: 'signup',
-        })}>
+
+      <div>
+        { !isAuthenticated ? (
+          <button className='signup-button' onClick={() => loginWithRedirect({
+            screen_hint: 'signup',
+          })}>
             Sign Up
-        </button>
-        )
+          </button>
+        ) : (
+          null
+        )}
+      </div>
+
+      //MV todo: clean up this commented code when we confirm ternary refactor works
+      // !isAuthenticated && (
+      //   <button className='signup-button' onClick={() => loginWithRedirect({
+      //     screen_hint: 'signup',
+      //   })}>
+      //       Sign Up
+      //   </button>
+      //   )
     )
 }
 

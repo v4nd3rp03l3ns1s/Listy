@@ -5,13 +5,24 @@ const LoginButton = () => {
     const { loginWithRedirect, isAuthenticated } = useAuth0();
     return (
 
-        !isAuthenticated && (
+        <div>
+            { !isAuthenticated ? (
+                <button className='login-button' onClick={() => loginWithRedirect()}>
+                    Log In
+                </button>
+            ) : (
+                null
+            )}
+        </div>
 
-            <button className='login-button' onClick={() => loginWithRedirect()}>
-                Log In
-            </button>
+        //MV todo: clean up this commented code when we confirm ternary refactor works
+        // !isAuthenticated && (
 
-        )
+        //     <button className='login-button' onClick={() => loginWithRedirect()}>
+        //         Log In
+        //     </button>
+
+        // )
     )
 }
 

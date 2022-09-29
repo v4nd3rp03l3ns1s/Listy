@@ -11,17 +11,17 @@ export const SearchPage = () => {
     }
     return (
 
-        isAuthenticated && (
-
-            <main className='login-page'>
-
+        <div>
+            { isAuthenticated ? (
+              <main className='login-page'>
                 <section className='search-container'>
                     <h1 className='hello'>Hello!</h1>
                     <input className='search-bar' type='text' placeholder='Search' />
                 </section>
-
-            </main>
-
-        )
+              </main>
+            ) : (
+              null
+            )}
+        </div>
     )
 }

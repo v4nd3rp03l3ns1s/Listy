@@ -16,23 +16,16 @@ export const LoginPage = () => {
 
   return (
 
-    !isAuthenticated && (
-
-      <>
-
+    <div>
+      { !isAuthenticated ? (
         <div className='login-page'>
-
           <img className='black-listy-logo' src={blackListyLogo} />
-
           <LoginButton />
           <SignUpButton />
-
         </div>
-
-      </>
-    )
-
-
-
+      ) : (
+        null
+      )}
+    </div>
   )
 }
