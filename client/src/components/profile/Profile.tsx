@@ -1,5 +1,5 @@
 import { useAuth0 } from '@auth0/auth0-react'
-import { Add } from './Add';
+import { Add } from '../add/Add';
 
 const Profile = () => {
 
