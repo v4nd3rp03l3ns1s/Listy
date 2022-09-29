@@ -10,19 +10,12 @@ import { SearchPage } from './SearchPage';
 
 
 export const Main = () => {
-
   // const { isLoading, error, isAuthenticated } = useAuth0();
-
-
-
 
   return (
     <BrowserRouter>
-
       <nav className='nav-top'><LogoNavbar /></nav>
-
       <section className='main-content'>
-
         <Routes>
           <Route path='/' element={<LoginPage />} />
           <Route path='/register' element='' />
@@ -31,12 +24,8 @@ export const Main = () => {
           <Route path='/search' element={<SearchPage />} />
           <Route path='/profile' element={<Profile />} />
         </Routes>
-
-
       </section>
-
       <footer className='nav-bottom'><Navbar /></footer>
-
     </BrowserRouter>
   )
 }
