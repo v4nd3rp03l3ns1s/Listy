@@ -1,13 +1,18 @@
-import React, { useState, useEffect, FormEvent, FunctionComponent } from 'react'
+import { useState, useEffect, FormEvent, FunctionComponent } from 'react'
 import './Add.css';
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 import { IPost } from '../componentTypes';
 
 const FileBase64 = require('react-file-base64')
 
-export const Add  = () => {
+interface IProps {
+  getAccessTokenSilently: Function,
+  getAccessTokenWithPopup: Function,
+ }
 
-  const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
+export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAccessTokenWithPopup}) => {
+
+  // const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
   const [posts, setPosts] = useState<IPost[]>([])
   const [name, setName] = useState('')

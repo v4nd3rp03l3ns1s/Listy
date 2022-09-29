@@ -9,7 +9,7 @@ import { SearchPage } from '../SearchPage';
 
 
 export const Main = () => {
-  const { isLoading, error, isAuthenticated, logout, loginWithRedirect, getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
+  const { isLoading, isAuthenticated, logout, loginWithRedirect, getAccessTokenSilently, getAccessTokenWithPopup, user } = useAuth0();
 
   return (
     <BrowserRouter>
@@ -23,10 +23,10 @@ export const Main = () => {
           <Route path='/profile/:username' element='' />
           <Route path='/mainfeed' element={<MainFeed />} />
           <Route path='/search' element={<SearchPage isLoading={isLoading} isAuthenticated={isAuthenticated}/>} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile' element={<Profile user={user} isAuthenticated={isAuthenticated} getAccessTokenSilently={getAccessTokenSilently} getAccessTokenWithPopup={getAccessTokenWithPopup} />} />
         </Routes>
       </section>
-      <footer className='nav-bottom'><Navbar /></footer>
+      <footer className='nav-bottom'><Navbar isAuthenticated={isAuthenticated}/></footer>
     </BrowserRouter>
   )
 }
