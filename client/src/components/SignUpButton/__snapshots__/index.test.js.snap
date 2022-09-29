@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sign-Up Button Should render a button 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <button
+      class="signup-button"
+    >
+      Sign Up
+    </button>
+  </div>
+</div>
+`;
+
+exports[`Sign-Up Button Should render a button with "Sign Up" text. 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <button
+      class="signup-button"
+    >
+      Sign Up
+    </button>
+  </div>
+</div>
+`;

@@ -1,4 +1,3 @@
-import React, { FunctionComponent } from 'react'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 

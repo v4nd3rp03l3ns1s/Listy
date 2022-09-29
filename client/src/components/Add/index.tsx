@@ -1,11 +1,11 @@
-import React, { useState, useEffect, FormEvent } from 'react'
+import React, { useState, useEffect, FormEvent, FunctionComponent } from 'react'
 import './Add.css';
 import { useAuth0 } from '@auth0/auth0-react'
 import { IPost } from '../componentTypes';
 
 const FileBase64 = require('react-file-base64')
 
-export const Add = () => {
+export const Add  = () => {
 
   const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
 
@@ -21,7 +21,7 @@ export const Add = () => {
       try {
         const token = await getAccessTokenSilently();
         const response = await fetch(
-          'http://localhost:3030/api/users/posts',
+          'http://localhost:3030/api/posts/allposts',
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -31,7 +31,6 @@ export const Add = () => {
         const responseData = await response.json();
         setPosts(responseData);
       } catch (error) {
-        console.error('Error: ', error)
       }};
     fetchUserPosts();
   }, [])
@@ -84,20 +83,15 @@ export const Add = () => {
     <div>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet"></link>
-      <div className='addPopup' onClick={() => setPopupActive(true)}><img className='add-logo' src='https://icons.veryicon.com/png/o/object/material-design-icons/add-49.png' /></div>
+      <div data-testid ='addPop' className='addPopup' onClick={() => setPopupActive(true)}><img className='add-logo' src='https://icons.veryicon.com/png/o/object/material-design-icons/add-49.png' /></div>
       {popupActive ? (
         <div className='popup'>
           <div className='modal-content'>
-            <button className='close-modal' onClick={() => setPopupActive(false)}>CLOSE</button>
+            <button data-testid= 'removePop' className='close-modal' onClick={() => setPopupActive(false)}>CLOSE</button>
             <form onSubmit={onSubmit} encType='multipart/form-data'>
               <div className='all-inputs'>
                 <div className='upload'>
                   <i className='material-icons'>add_photo_alternate</i>
-                  <FileBase64
-                    type='file'
-                    multiple={false}
-                    onDone={(base64:string)  => setImage(base64)} //potenitally wrong input
-                    value={image} />
                 </div>
                 <div className='name-input-div'>
                   <label>Name</label>

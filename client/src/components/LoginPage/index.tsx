@@ -1,10 +1,9 @@
 import React from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 import LoginButton from '../LoginButon'
-import SignUpButton from '../SignUpButton/SignUpButton'
+import SignUpButton from '../SignUpButton';
 
-import "*.svg";
-import blackListyLogo from '../pictures/listyLogoBlack.svg'
+import blackListyLogo from '../assets/listyLogoBlack.svg'
 
 export const LoginPage = () => {
 
