@@ -1,16 +1,9 @@
 const Post = require("../Models/Post");
 import { Request, Response } from "express";
-import IUser from "../Models/IUser";
 
-interface UserAuth extends Request {
-  auth: {
-    userId: string;
-  };
-  currUser: IUser;
-}
 
 const posts = {
-  addPost: async (req: UserAuth, res: Response) => {
+  addPost: async (req: Request, res: Response) => {
     try {
       const post = new Post({
         name: req.body.name,
@@ -28,7 +21,7 @@ const posts = {
     }
   },
 
-  deletePost: async (req: UserAuth, res: Response) => {
+  deletePost: async (req: Request, res: Response) => {
     try {
       const result = await Post.findByIdAndDelete(req.params.id);
       res.status(204).json(result);
@@ -37,7 +30,7 @@ const posts = {
     }
   },
 
-  likeDislikePost: async (req: UserAuth, res: Response) => {
+  likeDislikePost: async (req: Request, res: Response) => {
     try {
       const post = await Post.findById(req.params.id);
       let totalLikes = post.likes;
@@ -54,7 +47,7 @@ const posts = {
     }
   },
 
-  getMainfeed: async (req: UserAuth, res: Response) => {
+  getMainfeed: async (req: Request, res: Response) => {
     try {
       const userPosts = await Post.find({ userId: req.params.userId });
       res.json(userPosts);
