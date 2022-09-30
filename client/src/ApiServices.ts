@@ -14,21 +14,21 @@ export const getUserPosts = async (token :string) :Promise<IUser> => { //for use
     }
   );
   const responseData = await response.json();
-  return responseData
+  return responseData;
 }
 
 
-export const createPost = async (post:IPost, accessToken:string) :Promise<IPost>  => {  //for use in Add componenet
-  const response = await fetch(`${BASE_URL}/api/posts`, {
+export const createPost = async (post:IPost) :Promise<IPost>  => {  //for use in Add componenet
+  const response = await fetch(`${BASE_URL}/api/posts/`, {
     method: 'POST',
-    headers: { 'Content-type': 'application/json', Authorization: `Bearer ${accessToken}`, },
+    headers: { 'Content-type': 'application/json', },
     body: JSON.stringify(post)
   });
   const data = await response.json();
   return data
 }
 
-const deletePost = async (id :string) => {  //for use in Add component
+export const deletePost = async (id? :string) => {  //for use in Add component
   const response = await fetch(`${BASE_URL}/api/posts/post/delete/${id}`, {
     method: "DELETE"
   })

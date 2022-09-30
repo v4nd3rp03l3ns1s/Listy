@@ -9,8 +9,6 @@ export const MainFeed = () => {
   const { user } = useAuth0();
   const [posts, setPosts] = useState<IPost[]>([])
 
-  const postsBaseUrl = 'http://localhost:3030/api/posts'
-
   //HAVE TO MAKE THIS DYNAMIC
   useEffect(() => {
     async function getFeedPosts() {
@@ -26,7 +24,7 @@ export const MainFeed = () => {
             <h1 className='mainfeed-title'>MainFeed</h1>
 
             <section className='posts-container'>
-                {posts.map(post => (
+                { posts && posts.map(post => (
                     <div className='image-and-post' key={post._id}>
                         <img className='post-image' src={post.image} />
                         <section className='post-container'>

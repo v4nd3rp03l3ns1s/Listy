@@ -2,6 +2,8 @@ import { useState, useEffect, FormEvent, FunctionComponent } from 'react'
 import './Add.css';
 // import { useAuth0 } from '@auth0/auth0-react'
 import { IPost } from '../componentTypes';
+import { createPost, fetchMainfeedPosts, deletePost } from '../../ApiServices';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const FileBase64 = require('react-file-base64')
 
@@ -12,7 +14,7 @@ interface IProps {
 
 export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAccessTokenWithPopup}) => {
 
-  // const { getAccessTokenSilently, getAccessTokenWithPopup } = useAuth0();
+  const { user } = useAuth0();
 
   const [posts, setPosts] = useState<IPost[]>([])
   const [name, setName] = useState('')
@@ -22,66 +24,40 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
   const [popupActive, setPopupActive] = useState(false);
 
   useEffect(() => {
-    const fetchUserPosts = async () => {
-      try {
-        const token = await getAccessTokenSilently();
-        const response = await fetch(
-          'http://localhost:3030/api/posts/allposts',
-          {
-            headers: {
-              Authorization: `Bearer ${token}`
-            },
-          }
-        );
-        const responseData = await response.json();
-        setPosts(responseData);
-      } catch (error) {
-      }};
-    fetchUserPosts();
-  }, [])
+    async function getFeedPosts() {
+      if (user?.sub) {
+      const feedPosts = await fetchMainfeedPosts(user.sub);
+      setPosts(feedPosts);
+    }};
+      getFeedPosts();
+    }, [user])
 
 
-  const onSubmit = (e :FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e :FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const onPostAdded = async () => {
-      let accessToken = "";
-      const opts = {
-        audience: "http://localhost:3030",
-        scope: 'write:posts openid',
-      }
-      try {
-        accessToken = await getAccessTokenSilently(opts);
-      } catch (err) {
-        console.warn("consent required as we are running in localhost. Using workaround https://github.com/auth0/auth0-react/issues/65")
-        accessToken = await getAccessTokenWithPopup(opts)
-      }
-    const newPost = await fetch('http://localhost:3030/api/posts', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json', Authorization: `Bearer ${accessToken}`, },
-      body: JSON.stringify({
-        name: name,
-        rating: rating,
-        genre: genre,
-        image: image
-      }),
-    })
-    // TODO: add error handling
-    const res = await newPost.json();
-    setPosts([...posts, res])
+
+    const toBeSubmittedPost = {
+      name,
+      rating,
+      genre,
+      image,
+      userId: user?.sub,
     }
-    onPostAdded();
+
+    const res = await createPost(toBeSubmittedPost);
+    // TODO: add error handling
+    setPosts([...posts, res])
+
     //clears out the fields after post
-    setName('')
-    setRating('')
-    setGenre('')
-    setImage('')
+    setName('');
+    setRating('');
+    setGenre('');
+    setImage('');
   };
 
-  const deletePost = async (id :string) => {
-    const data = await fetch('http://localhost:3030/api/posts/post/delete/' + id, {
-      method: "DELETE"
-    }).then(res => res.json());
-    setPosts(posts => posts.filter(post => post._id !== data._id))
+  const removePost = async (id? :string) => {
+    await deletePost(id);
+    setPosts(posts => posts.filter(post => post._id !== id))
   }
 
   return (
@@ -124,7 +100,7 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
               <h1 className='post-name'>{post.name}</h1>
               <p className='post-rating'>{post.rating}</p>
               <p className='post-genre'>{post.genre}</p>
-              <button className='delete-button' onClick={() => deletePost(post._id)}>X</button>
+              <button className='delete-button' onClick={() => removePost(post._id)}>X</button>
             </section>
           </div>
         ))}
