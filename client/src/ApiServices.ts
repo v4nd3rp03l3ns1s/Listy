@@ -4,20 +4,6 @@ import axios from "axios";
 
 const BASE_URL = 'http://localhost:3030'
 
-export const getUserPosts = async (token :string) :Promise<IUser> => { //for use in Add component
-  const response = await fetch(
-    `${BASE_URL}/api/posts/allposts`,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-    }
-  );
-  const responseData = await response.json();
-  return responseData;
-}
-
-
 export const createPost = async (post:IPost) :Promise<IPost>  => {  //for use in Add componenet
   const response = await fetch(`${BASE_URL}/api/posts/`, {
     method: 'POST',
@@ -54,9 +40,3 @@ export const fetchMainfeedPosts = async (userId :string) => {
       console.error('Error: ', error)
     }
 }
-
-//commented out from Post Component,
-export const getUser = async (userId :string) =>{
-  const res = await axios.get(`${BASE_URL}/api/auth/users/${userId}`);
-  return res.data;
-};
