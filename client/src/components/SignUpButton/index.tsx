@@ -8,7 +8,6 @@ interface IProps {
 
 const SignUpButton: FunctionComponent<IProps> = ({isAuthenticated, loginWithRedirect}) => {
 
-  // const { loginWithRedirect, isAuthenticated } = useAuth0();
     return (
 
       <div className='container'>
@@ -22,15 +21,6 @@ const SignUpButton: FunctionComponent<IProps> = ({isAuthenticated, loginWithRedi
           null
         )}
       </div>
-
-      //MV todo: clean up this commented code when we confirm ternary refactor works
-      // !isAuthenticated && (
-      //   <button className='signup-button' onClick={() => loginWithRedirect({
-      //     screen_hint: 'signup',
-      //   })}>
-      //       Sign Up
-      //   </button>
-      //   )
     )
 }
 
