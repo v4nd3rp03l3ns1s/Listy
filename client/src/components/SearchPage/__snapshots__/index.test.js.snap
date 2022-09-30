@@ -2,8 +2,8 @@
 
 exports[`Search Page Should render the search page 1`] = `
 <div>
-  <div>
-    Loading...
-  </div>
+  <div
+    class="container"
+  />
 </div>
 `;
