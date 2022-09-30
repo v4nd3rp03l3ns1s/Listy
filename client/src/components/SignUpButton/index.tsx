@@ -1,8 +1,14 @@
-import { useAuth0 } from '@auth0/auth0-react'
+import { FunctionComponent } from 'react'
+// import { useAuth0 } from '@auth0/auth0-react'
 
-const SignUpButton = () => {
+interface IProps {
+  isAuthenticated: boolean,
+  loginWithRedirect: Function,
+}
 
-  const { loginWithRedirect, isAuthenticated } = useAuth0();
+const SignUpButton: FunctionComponent<IProps> = ({isAuthenticated, loginWithRedirect}) => {
+
+  // const { loginWithRedirect, isAuthenticated } = useAuth0();
     return (
 
       <div className='container'>

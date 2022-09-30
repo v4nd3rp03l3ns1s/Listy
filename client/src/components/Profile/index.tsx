@@ -1,8 +1,19 @@
-import { useAuth0 } from '@auth0/auth0-react'
+import { FunctionComponent } from 'react'
+// import { useAuth0 } from '@auth0/auth0-react'
 import { Add } from '../Add';
 
-const Profile = () => {
-  const { user, isAuthenticated } = useAuth0();
+interface IProps {
+  isAuthenticated: boolean,
+  user: {
+    nickname: string,
+    picture: string,
+  },
+  getAccessTokenSilently: Function,
+  getAccessTokenWithPopup: Function,
+ }
+
+const Profile: FunctionComponent<IProps> = ({isAuthenticated, user, getAccessTokenSilently, getAccessTokenWithPopup}) => {
+  // const { user, isAuthenticated } = useAuth0();
 
   return (
     <div>
@@ -14,7 +25,9 @@ const Profile = () => {
               <h2 className='profile-name'>{user?.nickname}</h2>
               <button className='friends-button'><img className='friends-icon' src='https://d338t8kmirgyke.cloudfront.net/icons/icon_pngs/000/002/537/original/friends.png' /></button>
             </section>
-            <div className='posts-container'><Add /></div>
+            <div className='posts-container'>
+              <Add getAccessTokenSilently={getAccessTokenSilently} getAccessTokenWithPopup={getAccessTokenWithPopup} />
+            </div>
           </article>
         </main>
       ) : (

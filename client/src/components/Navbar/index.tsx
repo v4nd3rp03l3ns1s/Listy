@@ -1,9 +1,13 @@
+import { FunctionComponent } from 'react'
 import { Link, useMatch, useResolvedPath } from 'react-router-dom'
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
 
+interface IProps {
+  isAuthenticated: boolean,
+ }
 
-export const Navbar = () => {
-  const { isAuthenticated } = useAuth0();
+export const Navbar: FunctionComponent<IProps> = ({isAuthenticated}) => {
+  // const { isAuthenticated } = useAuth0();
 
   return (
     <div>
