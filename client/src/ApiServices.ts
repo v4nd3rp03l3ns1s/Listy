@@ -15,18 +15,21 @@ export const createPost = async (post:IPost) :Promise<IPost>  => {  //for use in
 }
 
 export const deletePost = async (id? :string) => {  //for use in Add component
-  const response = await fetch(`${BASE_URL}/api/posts/post/delete/${id}`, {
+  await fetch(`${BASE_URL}/api/posts/post/delete/${id}`, {
     method: "DELETE"
   })
-  const data = await response.json();
-  return data;
 }
 
-export const likePost = async (id: string, upvote: boolean) => {
+
+
+export const likePost = async (id: string, upvote: string) => {
   const response = await fetch(`${BASE_URL}/api/posts/like/${id}`, {
-    body: JSON.stringify(upvote)
+    method :'PUT',
+    headers :{'Content-Type' :'application/json' } ,
+    body: JSON.stringify({upvote})
   });
   const data = await response.json();
+  console.log(data)
   return data;
 }
 

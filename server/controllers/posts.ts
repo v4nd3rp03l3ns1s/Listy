@@ -24,7 +24,7 @@ const posts = {
   deletePost: async (req: Request, res: Response) => {
     try {
       const result = await Post.findByIdAndDelete(req.params.id);
-      res.status(204).json(result);
+      res.status(204).send({result});
     } catch (error) {
       res.status(401).json(error);
     }
@@ -35,13 +35,15 @@ const posts = {
       const post = await Post.findById(req.params.id);
       let totalLikes = post.likes;
       const bool = req.body.upvote;
-      if (bool) {
+      console.log(bool)
+      if (bool=='true') {
         totalLikes = post.likes + 1;
       }
       else {
         totalLikes = post.likes - 1;
       }
-      await Post.findByIdAndUpdate(req.params.id, {likes: totalLikes});
+      const data = await Post.findByIdAndUpdate(req.params.id, {likes: totalLikes});
+      res.status(200).send(data)
     } catch (error) {
       res.status(500).json(error);
     }

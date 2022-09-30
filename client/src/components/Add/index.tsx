@@ -21,6 +21,7 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
   const [rating, setRating] = useState('')
   const [genre, setGenre] = useState('')
   const [image, setImage] = useState('')
+  const [vote, setVote] = useState('')
   const [popupActive, setPopupActive] = useState(false);
 
   useEffect(() => {
@@ -60,8 +61,8 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
     setPosts(posts => posts.filter(post => post._id !== id))
   }
 
-  const likePost = async (id?: string, upvote?: boolean) => {
-    await likePost(id, upvote);
+  const votePost = async (upvote: string, id?: string) => {
+    if (id) await likePost(id, upvote);
   }
 
   return (
@@ -104,10 +105,10 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
               <h1 className='post-name'>{post.name}</h1>
               <p className='post-rating'>{post.rating}</p>
               <p className='post-genre'>{post.genre}</p>
-              <button className='like-button' onClick={() => likePost(post._id, true)}>Like!</button>
-              <button className='dislike-button' onClick={() => likePost(post._id, false)}>Dislike!</button>
               <button className='delete-button' onClick={() => removePost(post._id)}>X</button>
             </section>
+            <button className='like-button' onClick={() => votePost('true', post._id)}>Like!</button>
+            <button className='dislike-button' onClick={() => votePost('false', post._id)}>Dislike!</button>
           </div>
         ))}
       </section>
