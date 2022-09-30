@@ -23,10 +23,10 @@ export const Main = () => {
           <Route path='/profile/:username' element='' />
           <Route path='/mainfeed' element={<MainFeed />} />
           <Route path='/search' element={<SearchPage isLoading={isLoading} isAuthenticated={isAuthenticated}/>} />
-          <Route path='/profile' element={<Profile user={user} isAuthenticated={isAuthenticated} getAccessTokenSilently={getAccessTokenSilently} getAccessTokenWithPopup={getAccessTokenWithPopup} />} />
-        </Routes>
+         <Route path='/profile' element={<Profile user={user} isAuthenticated={isAuthenticated} getAccessTokenSilently={getAccessTokenSilently} getAccessTokenWithPopup={getAccessTokenWithPopup} />} />
+         </Routes>
       </section>
-      <footer className='nav-bottom'><Navbar isAuthenticated={isAuthenticated}/></footer>
+      <footer className='nav-bottom'><Navbar isAuthenticated={isAuthenticated} to ={''} children ={<></>} /></footer>
     </BrowserRouter>
   )
 }

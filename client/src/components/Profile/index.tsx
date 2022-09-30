@@ -1,13 +1,11 @@
 import { FunctionComponent } from 'react'
 // import { useAuth0 } from '@auth0/auth0-react'
 import { Add } from '../Add';
+import { User } from '@auth0/auth0-react'
 
 interface IProps {
   isAuthenticated: boolean,
-  user: {
-    nickname: string,
-    picture: string,
-  },
+  user: User | undefined
   getAccessTokenSilently: Function,
   getAccessTokenWithPopup: Function,
  }
