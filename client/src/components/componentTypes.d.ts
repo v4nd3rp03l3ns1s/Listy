@@ -6,6 +6,7 @@ export interface IPost {
   name: string,
   rating: string,
   genre: string,
+  likes?: number,
 }
 
 export interface IUser{

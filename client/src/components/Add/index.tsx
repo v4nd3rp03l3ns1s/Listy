@@ -2,7 +2,7 @@ import { useState, useEffect, FormEvent, FunctionComponent } from 'react'
 import './Add.css';
 // import { useAuth0 } from '@auth0/auth0-react'
 import { IPost } from '../componentTypes';
-import { createPost, fetchMainfeedPosts, deletePost } from '../../ApiServices';
+import { createPost, fetchMainfeedPosts, deletePost, likePost } from '../../ApiServices';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const FileBase64 = require('react-file-base64')
@@ -60,6 +60,10 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
     setPosts(posts => posts.filter(post => post._id !== id))
   }
 
+  const likePost = async (id?: string, upvote?: boolean) => {
+    await likePost(id, upvote);
+  }
+
   return (
     <div>
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -100,6 +104,8 @@ export const Add: FunctionComponent<IProps>  = ({getAccessTokenSilently, getAcce
               <h1 className='post-name'>{post.name}</h1>
               <p className='post-rating'>{post.rating}</p>
               <p className='post-genre'>{post.genre}</p>
+              <button className='like-button' onClick={() => likePost(post._id, true)}>Like!</button>
+              <button className='dislike-button' onClick={() => likePost(post._id, false)}>Dislike!</button>
               <button className='delete-button' onClick={() => removePost(post._id)}>X</button>
             </section>
           </div>
