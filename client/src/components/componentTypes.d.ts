@@ -1,12 +1,12 @@
+
 export interface IPost {
-  _id: string,
+  userId?: string,
+  _id?: string,
   image: string,
   name: string,
   rating: string,
   genre: string,
 }
-
-import mongoose from "mongoose";
 
 export interface IUser{
   userId: {

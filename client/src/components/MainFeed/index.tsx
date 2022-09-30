@@ -1,65 +1,30 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useAuth0, withAuthenticationRequired } from '@auth0/auth0-react'
-import { IPost } from '../componentTypes'
+import { IPost } from '../componentTypes';
+import { fetchMainfeedPosts } from '../../ApiServices';
+
 
 export const MainFeed = () => {
+  const { user } = useAuth0();
+  const [posts, setPosts] = useState<IPost[]>([])
 
-    const { getAccessTokenSilently } = useAuth0();
-
-    const [posts, setPosts] = useState<IPost[]>([])
-
-    //MV todo: move to a config
-    const postsBaseUrl = 'http://localhost:3030/api/posts'
-
-
-    //HAVE TO MAKE THIS DYNAMIC
-    useEffect(() => {
-        const fetchPosts = async () => {
-
-            const res = await axios.get(postsBaseUrl + '/mainfeed/6335e3cffbd608ee0320cb14');
-
-            setPosts(res.data);
-
-            console.log(res)
-        };
-
-        fetchPosts();
-
-    }, [])
-
-    // useEffect(() => {
-
-    //     const fetchMainfeedPosts = async () => {
-    //         try {
-    //             const token = await getAccessTokenSilently();
-
-    //             const response = await fetch(
-    //                 'http://localhost:3030/api/posts/mainfeed',
-    //                 {
-    //                     headers: {
-    //                         Authorization: `Bearer ${token}`
-    //                     },
-    //                 }
-    //             );
-
-    //             const responseData = await response.json();
-    //             setPosts(responseData);
-    //         } catch (error) {
-    //             console.error('Error: ', error)
-    //         }
-    //     };
-    //     fetchMainfeedPosts();
-    //     }, [])
-
-
+  //HAVE TO MAKE THIS DYNAMIC
+  useEffect(() => {
+    async function getFeedPosts() {
+      if (user?.sub) {
+      const feedPosts = await fetchMainfeedPosts(user.sub);
+      setPosts(feedPosts);
+    }};
+      getFeedPosts();
+    }, [user])
 
     return (
         <main>
             <h1 className='mainfeed-title'>MainFeed</h1>
 
             <section className='posts-container'>
-                {posts.map(post => (
+                { posts && posts.map(post => (
                     <div className='image-and-post' key={post._id}>
                         <img className='post-image' src={post.image} />
                         <section className='post-container'>
