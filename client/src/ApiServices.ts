@@ -25,7 +25,7 @@ export const createPost = async (post:IPost) :Promise<IPost>  => {  //for use in
     body: JSON.stringify(post)
   });
   const data = await response.json();
-  return data
+  return data;
 }
 
 export const deletePost = async (id? :string) => {  //for use in Add component
@@ -36,12 +36,12 @@ export const deletePost = async (id? :string) => {  //for use in Add component
   return data;
 }
 
-//for use is MainFeed Component, is currently hardcoded for specific userID
-//this is likely only used for presentational purposes and not meant to be used to generate the main feed
-export const fetchPosts = async (userId :string) => {
-  const res = await axios.get(`${BASE_URL}/mainfeed/6335e3cffbd608ee0320cb14`);
-  return res.data
-
+export const likePost = async (id: string, upvote: boolean) => {
+  const response = await fetch(`${BASE_URL}/api/posts/like/${id}`, {
+    body: JSON.stringify(upvote)
+  });
+  const data = await response.json();
+  return data;
 }
 
 //commented out in MainFeed component, likely meant to be used to get the main feed
