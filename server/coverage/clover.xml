@@ -3,9 +3,9 @@
   <project timestamp="1664490871584" name="All files">
     <metrics statements="148" coveredstatements="80" conditionals="13" coveredconditionals="1" methods="29" coveredmethods="10" elements="190" coveredelements="91" complexity="0" loc="148" ncloc="148" packages="4" files="8" classes="8"/>
     <package name="server">
-      <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
-      <file name="index.ts" path="C:\Users\austi\Desktop\Listy-Project\server\index.ts">
-        <metrics statements="26" coveredstatements="26" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+      <metrics statements="26" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
+      <file name="index.ts" path="/home/jacob/Listy-Project/server/index.ts">
+        <metrics statements="26" coveredstatements="25" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="1"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -30,20 +30,20 @@
         <line num="32" count="1" type="stmt"/>
         <line num="42" count="1" type="stmt"/>
         <line num="44" count="1" type="stmt"/>
-        <line num="45" count="1" type="stmt"/>
+        <line num="45" count="0" type="stmt"/>
         <line num="48" count="1" type="stmt"/>
       </file>
     </package>
     <package name="server.Models">
       <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="Post.ts" path="C:\Users\austi\Desktop\Listy-Project\server\Models\Post.ts">
+      <file name="Post.ts" path="/home/jacob/Listy-Project/server/Models/Post.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
         <line num="30" count="1" type="stmt"/>
         <line num="32" count="1" type="stmt"/>
       </file>
-      <file name="User.ts" path="C:\Users\austi\Desktop\Listy-Project\server\Models\User.ts">
+      <file name="User.ts" path="/home/jacob/Listy-Project/server/Models/User.ts">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="3" count="1" type="stmt"/>
@@ -52,7 +52,7 @@
     </package>
     <package name="server.controllers">
       <metrics statements="76" coveredstatements="23" conditionals="12" coveredconditionals="1" methods="19" coveredmethods="6"/>
-      <file name="posts.ts" path="C:\Users\austi\Desktop\Listy-Project\server\controllers\posts.ts">
+      <file name="posts.ts" path="/home/jacob/Listy-Project/server/controllers/posts.ts">
         <metrics statements="41" coveredstatements="13" conditionals="2" coveredconditionals="0" methods="13" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -96,7 +96,7 @@
         <line num="83" count="0" type="stmt"/>
         <line num="88" count="1" type="stmt"/>
       </file>
-      <file name="users.ts" path="C:\Users\austi\Desktop\Listy-Project\server\controllers\users.ts">
+      <file name="users.ts" path="/home/jacob/Listy-Project/server/controllers/users.ts">
         <metrics statements="35" coveredstatements="10" conditionals="10" coveredconditionals="1" methods="6" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
@@ -137,7 +137,7 @@
     </package>
     <package name="server.routes">
       <metrics statements="39" coveredstatements="24" conditionals="1" coveredconditionals="0" methods="8" coveredmethods="2"/>
-      <file name="middleware.ts" path="C:\Users\austi\Desktop\Listy-Project\server\routes\middleware.ts">
+      <file name="middleware.ts" path="/home/jacob/Listy-Project/server/routes/middleware.ts">
         <metrics statements="16" coveredstatements="5" conditionals="1" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -156,7 +156,7 @@
         <line num="40" count="0" type="stmt"/>
         <line num="43" count="1" type="stmt"/>
       </file>
-      <file name="posts.ts" path="C:\Users\austi\Desktop\Listy-Project\server\routes\posts.ts">
+      <file name="posts.ts" path="/home/jacob/Listy-Project/server/routes/posts.ts">
         <metrics statements="16" coveredstatements="12" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="2"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
@@ -175,7 +175,7 @@
         <line num="30" count="0" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
       </file>
-      <file name="users.ts" path="C:\Users\austi\Desktop\Listy-Project\server\routes\users.ts">
+      <file name="users.ts" path="/home/jacob/Listy-Project/server/routes/users.ts">
         <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>

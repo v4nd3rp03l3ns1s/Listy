@@ -1,8 +1,14 @@
-import { useAuth0 } from '@auth0/auth0-react'
+// import { useAuth0 } from '@auth0/auth0-react'
+import { FunctionComponent } from 'react'
 
-const LogoutButton = () => {
+interface IProps {
+  isAuthenticated: boolean,
+  logout: Function,
+ }
 
-    const { logout, isAuthenticated } = useAuth0();
+const LogoutButton: FunctionComponent<IProps> = ({isAuthenticated, logout}) => {
+
+    // const { logout, isAuthenticated } = useAuth0();
     return (
 
         <div>

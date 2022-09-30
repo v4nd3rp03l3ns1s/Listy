@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> should be the same as snapshot 1`] = `
+<div>
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <div
+    class="addPopup"
+    data-testid="addPop"
+  >
+    <img
+      class="add-logo"
+      src="https://icons.veryicon.com/png/o/object/material-design-icons/add-49.png"
+    />
+  </div>
+  <section
+    class="posts-container"
+  />
+</div>
+`;

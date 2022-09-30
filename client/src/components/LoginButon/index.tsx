@@ -1,29 +1,24 @@
+import { FunctionComponent } from 'react'
 import { useAuth0 } from '@auth0/auth0-react'
 
-const LoginButton = () => {
+interface IProps {
+  isAuthenticated: boolean,
+  loginWithRedirect: Function,
+}
 
-    const { loginWithRedirect, isAuthenticated } = useAuth0();
-    return (
-
-        <div>
-            { !isAuthenticated ? (
-                <button className='login-button' onClick={() => loginWithRedirect()}>
-                    Log In
-                </button>
-            ) : (
-                null
-            )}
-        </div>
-
-        //MV todo: clean up this commented code when we confirm ternary refactor works
-        // !isAuthenticated && (
-
-        //     <button className='login-button' onClick={() => loginWithRedirect()}>
-        //         Log In
-        //     </button>
-
-        // )
-    )
+const LoginButton: FunctionComponent<IProps> = ({ isAuthenticated, loginWithRedirect}) => {
+  // const { loginWithRedirect, isAuthenticated } = useAuth0();
+  return (
+    <div>
+      { !isAuthenticated ? (
+        <button className='login-button' onClick={() => loginWithRedirect()}>
+          Log In
+        </button>
+      ) : (
+        null
+      )}
+    </div>
+  )
 }
 
 export default LoginButton
