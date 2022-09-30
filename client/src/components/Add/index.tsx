@@ -1,4 +1,4 @@
-import { useState, useEffect, FormEvent, FunctionComponent } from 'react'
+import { useState, useEffect, FormEvent, FunctionComponent } from 'react';
 import './Add.css';
 // import { useAuth0 } from '@auth0/auth0-react'
 import { IPost } from '../componentTypes';
