@@ -1,18 +1,9 @@
 const Post = require("../Models/Post");
-const User = require("../Models/User");
 import { Request, Response } from "express";
-import IUser from "../Models/IUser";
 
-interface UserAuth extends Request {
-  auth: {
-    userId: string;
-  };
-  currUser: IUser;
-}
 
 const posts = {
-  addPost: async (req: UserAuth, res: Response) => {
-    // const userId = req.auth.payload.sub.split("|")[1]
+  addPost: async (req: Request, res: Response) => {
     try {
       const post = new Post({
         name: req.body.name,
@@ -20,6 +11,7 @@ const posts = {
         genre: req.body.genre,
         userId: req.body.userId,
         image: req.body.image.base64,
+        likes: 0,
       });
       //TODO: add error handling
       await post.save();
@@ -29,7 +21,7 @@ const posts = {
     }
   },
 
-  deletePost: async (req: UserAuth, res: Response) => {
+  deletePost: async (req: Request, res: Response) => {
     try {
       const result = await Post.findByIdAndDelete(req.params.id);
       res.status(204).json(result);
@@ -38,47 +30,27 @@ const posts = {
     }
   },
 
-  likeDislikePost: async (req: UserAuth, res: Response) => {
+  likeDislikePost: async (req: Request, res: Response) => {
     try {
       const post = await Post.findById(req.params.id);
-      if (!post.likes.includes(req.body.userId)) {
-        await post.updateOne({ $push: { likes: req.body.userId } });
-        res.status(200).json("The post has been liked");
-      } else {
-        await post.updateOne({ $pull: { likes: req.body.userId } });
-        res.status(200).json("The post has been disliked");
+      let totalLikes = post.likes;
+      const bool = req.body.upvote;
+      if (bool) {
+        totalLikes = post.likes + 1;
       }
+      else {
+        totalLikes = post.likes - 1;
+      }
+      await Post.findByIdAndUpdate(req.params.id, {likes: totalLikes});
     } catch (error) {
       res.status(500).json(error);
     }
   },
 
-  getPost: async (req: UserAuth, res: Response) => {
+  getMainfeed: async (req: Request, res: Response) => {
     try {
-      const post = await Post.findById(req.params.id);
-      res.status(200).json(post);
-    } catch (error) {
-      res.status(500).json(error);
-    }
-  },
-
-  getAllPosts: async (req: UserAuth, res: Response) => {
-    console.log("in");
-    const posts = await Post.find({ userId: req.auth.userId });
-    res.status(200).json(posts);
-  },
-
-  getMainfeed: async (req: UserAuth, res: Response) => {
-    try {
-      const currUser = await User.findById({ _id: req.params.userId });
       const userPosts = await Post.find({ userId: req.params.userId });
-      const friendPosts = await Promise.all(
-        currUser.following.map((friendId: string) => {
-          //this will return each post
-          return Post.find({ userId: friendId });
-        })
-      );
-      res.json(userPosts.concat(...friendPosts));
+      res.json(userPosts);
     } catch (error) {
       res.status(500).json(error);
     }

@@ -16,7 +16,7 @@ interface IResponse extends Response {
 }
 
 describe("Test the root path", () => {
-  test("It should respond to the GET method", (done) => {
+  test("It should respond to the GET method and get user", (done) => {
     request(app)
       .get("/api/users/113821008080613850752")
       .then((response: Response) => {
@@ -24,7 +24,7 @@ describe("Test the root path", () => {
         done();
       });
   });
-  test("It should respond to the POST method", (done) => {
+  test("It should respond to the POST method and post a post", (done) => {
     request(app)
       .delete("/api/posts/post/delete/6335cbffd99c56b6919657c6")
       .then((response: Response) => {
