@@ -14,6 +14,6 @@ The "test" script executes Jest unit tests, and "npx cypress run" will run end-t
 
 React, Typescript, Express, MongoDB, Node, Auth0, Jest, Cypress
 
-*Contributors:*
+*Refactor Contributors:*
 
 Matt Vanderpoel, Jacob Walsh, Austin Westbury
